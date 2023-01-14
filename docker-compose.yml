@@ -1,0 +1,61 @@
+
+
+# services: 
+#   app:
+#     build: .
+#     command: npm start
+#     ports:
+#       - "3040:3000"
+#     volumes: 
+#       - .:/usr/app
+
+
+
+
+# especificar a versão do docker-compose
+version: "3.8"
+
+# serviços de containers
+services:
+  
+  # nome para o container de banco de dados
+  db:
+    # imagem que vai ser utilizada
+    image: mysql
+    container_name: mysql-container
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: programadorabordo
+    volumes:
+      - ./api/db/data:/var/lib/mysql
+    restart: always
+  
+  api:
+    # caso tenha nomeado o dockefile com outro nome, fazer o seguinte passo para passar o caminho do arquivo
+    # build: 
+    #   context: "./api"
+    #   dockerfile: "Dockerfile-api"
+    build: "./api"
+    container_name: node-container
+    restart: always
+    volumes:
+      - ./api:/home/node/app
+    ports:
+      - "9001:9001"
+    depends_on: 
+    # a dependencia é indicada apenas com o nome do servico
+      - db
+
+  web:
+    image: "php:7.2-apache"
+    container_name: php-container
+    restart: always
+    volumes:
+      - ./website:/var/www/html
+    ports:
+      - "8888:80"
+    depends_on:
+      - db
+      - api
+  
+
