@@ -36,8 +36,9 @@ return new class extends Migration
             $table->string('ansiedade', 100);
             $table->string('equilibrio_vida', 100);
             $table->string('motivacao', 100);
+            $table->timestamps();
             
-            $table->foreign('id_paciets')->references('id')->on('clients');
+            $table->foreign('id_pacients')->references('id')->on('pacients');
         });
     }
 

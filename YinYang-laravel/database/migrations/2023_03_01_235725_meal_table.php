@@ -13,7 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('meal', function (Blueprint $table) {
+            $table->increments('id')->unique();
+            $table->string('horario');
+            $table->longText('refeicao');
+            $table->timestamps();
+
+            $table->foreign('id_pacient')->references('id')->on('pacients');
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('meal');
     }
 };

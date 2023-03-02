@@ -25,7 +25,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_nutricionista')->references('id')->on('nutriocionist');
+            $table->foreign('id_nutricionist')->references('id')->on('nutriocionist');
         });
     }
     /**

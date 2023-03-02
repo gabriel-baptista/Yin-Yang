@@ -13,7 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('appointment', function (Blueprint $table) {
+            $table->increments('id')->unique();
+            $table->integer('status', 1);
+            $table->timestamps();
+            
+            $table->foreign('id_pacients')->references('id')->on('pacients');
+            $table->foreign('id_nutricionist')->references('id')->on('nutricionist');
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('appointment');
     }
 };
