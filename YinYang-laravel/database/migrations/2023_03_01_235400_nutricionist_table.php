@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('nutricionist', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->unsignedInteger('id_user');
             $table->string('nome', 100);
             $table->string('email', 100);
             $table->string('celular', 13);

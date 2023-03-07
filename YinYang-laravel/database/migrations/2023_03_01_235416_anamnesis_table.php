@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('anamnesis', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->unsignedInteger('id_pacient');
             $table->string('objetivo_acompanhamento', 100);
             $table->string('plano_mais_exercicios', 100);
             $table->string('dificuldade', 100);
@@ -25,12 +26,12 @@ return new class extends Migration
             $table->string('horario_mais_fome', 100);
             $table->string('mastigacao', 100);
             $table->string('habito_alimentacao', 100);
-            $table->unsignedInteger('agua_dia', 100);
-            $table->integer('peso_anamnese', 100);
+            $table->double('agua_dia', 3,2);
+            $table->double('peso_anamnese', 3,2);
             $table->string('intestino', 100);
             $table->string('sensacao_comer', 100);
-            $table->unsignedInteger('peso_inicial', 100);
-            $table->integer('horas_sono', 100);
+            $table->double('peso_inicial', 3,2);
+            $table->integer('horas_sono');
             $table->string('tipo_sono', 100);
             $table->string('estresse', 100);
             $table->string('ansiedade', 100);
@@ -38,7 +39,7 @@ return new class extends Migration
             $table->string('motivacao', 100);
             $table->timestamps();
             
-            $table->foreign('id_pacients')->references('id')->on('pacients');
+            $table->foreign('id_pacient')->references('id')->on('pacients');
         });
     }
 

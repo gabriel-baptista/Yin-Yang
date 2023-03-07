@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('bioimpedence_appointment', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->unsignedInteger('id_appointment');
             $table->double('peso_consulta', 3, 2);
             $table->double('musculo_esqueletico', 3, 2);
             $table->double('massa_magra', 3, 2);

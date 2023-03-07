@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('pacients', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->unsignedInteger('id_user');
+            $table->unsignedInteger('id_nutricionist');
             $table->string('nome', 100);
             $table->string('login', 100)->unique();
             $table->string('password', 100);

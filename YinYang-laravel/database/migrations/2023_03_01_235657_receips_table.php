@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('receips', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->unsignedInteger('id_pacient');
             $table->longText('ingredientes');
             $table->longText('modo_preparo');
             $table->timestamps();

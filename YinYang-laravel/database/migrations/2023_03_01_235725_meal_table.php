@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('meal', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->unsignedInteger('id_pacient');
             $table->string('horario');
             $table->longText('refeicao');
             $table->timestamps();
