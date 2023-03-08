@@ -15,10 +15,10 @@ services:
         image: mysql:8
         container_name: yinyang_db
         environment:
-            MYSQL_DATABASE: "yinyang_database"
-            MYSQL_USER: "teste"
-            MYSQL_PASSWORD: "yinyang"
-            MYSQL_ROOT_PASSWORD: "yinyang1"
+            MYSQL_DATABASE: yinyang_database
+            MYSQL_USER: teste
+            MYSQL_PASSWORD: yinyang
+            MYSQL_ROOT_PASSWORD: yinyang1
         ports:
             - "3306:3306"
         volumes:
