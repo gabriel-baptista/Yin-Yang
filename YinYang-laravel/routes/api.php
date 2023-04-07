@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnamnesisController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+$controllerPath = 'App\Http\Controllers';
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Anamese
+Route::post('/anamnese', [AnamnesisController::class, 'store']);
+Route::put('/anamnese', [AnamnesisController::class, 'update']);

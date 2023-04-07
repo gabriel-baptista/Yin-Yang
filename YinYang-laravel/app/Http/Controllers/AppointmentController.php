@@ -2,30 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -34,29 +15,15 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $appointment = $request->only([
+            'id_pacient',
+            'is_nutricionist',
+            'status',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        Appointment::create($appointment);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return ['message' => 'Cadastrado com sucesso!'];
     }
 
     /**
@@ -68,7 +35,18 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $appointment = Appointment::find($id);
+
+        $appointmentEdit = $request->only([
+            'id_pacient',
+            'is_nutricionist',
+            'status',
+        ]);
+
+        $appointment->fill($appointmentEdit);
+        $appointment->save();
+
+        return ['message' => 'Editado com sucesso'];
     }
 
     /**
@@ -79,6 +57,10 @@ class AppointmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $appointment = Appointment::find($id);
+
+        $appointment->desroy();
+
+        return ['message' => 'Deletado com sucesso!'];
     }
 }
