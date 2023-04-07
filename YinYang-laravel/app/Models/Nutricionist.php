@@ -11,6 +11,6 @@ class Nutricionist extends Model
     protected $table = 'nutrocionist';
 
     public function users(){
-        return $this->hasMany(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }
