@@ -34,7 +34,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->only([
+            'login',
+            'password',
+            'ativo',
+            'nivel_acesso',
+        ]);
+
+        Appointment::create($user);
+
+        return ['message' => 'Cadastrado com sucesso!'];
     }
 
     /**
@@ -68,7 +77,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $userEdit = $request->only([
+            'login',
+            'password',
+            'ativo',
+            'nivel_acesso',
+        ]);
+
+        $user->fill($userEdit);
+        $user->save();
+
+        return ['message' => 'Editado com sucesso'];
     }
 
     /**

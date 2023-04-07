@@ -34,7 +34,13 @@ class MealController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $meal = Meal::find($id);
+
+        $meal = $request->only([
+            'id_pacient',
+            'horario',
+            'refeicao',
+        ]);
     }
 
     /**
@@ -68,7 +74,19 @@ class MealController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $meal = Meal::find($id);
+
+        $mealEdit = $request->only([
+            'id_pacient',
+            'horario',
+            'refeicao',
+        ]);
+
+        $meal->fill($mealEdit);
+        $meal->save();
+
+        return ['message' => 'Editado com sucesso'];
+
     }
 
     /**

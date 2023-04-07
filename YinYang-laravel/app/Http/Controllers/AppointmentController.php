@@ -17,7 +17,7 @@ class AppointmentController extends Controller
     {
         $appointment = $request->only([
             'id_pacient',
-            'is_nutricionist',
+            'id_nutricionist',
             'status',
         ]);
 

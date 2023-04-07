@@ -14,7 +14,23 @@ class BioimpedanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bioimpedance = $request->only([
+            'id_appointment',
+            'peso_consulta',
+            'musculo_esqueletico',
+            'massa_magra',
+            'gordura_corporal',
+            'massa_gorda',
+            'agua_consulta',
+            'circunferencia_cintura',
+            'imc',
+            'tmb',
+            'pontuacao',
+        ]);
+
+        Bioimpedance::create($bioimpedance);
+
+        return ['message' => 'Cadastrado com sucesso!'];
     }
 
     /**
@@ -48,7 +64,26 @@ class BioimpedanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bioimpedance = Bioimpedance::find($id);
+
+        $bioimpedanceEdit = $request->only([
+            'id_appointment',
+            'peso_consulta',
+            'musculo_esqueletico',
+            'massa_magra',
+            'gordura_corporal',
+            'massa_gorda',
+            'agua_consulta',
+            'circunferencia_cintura',
+            'imc',
+            'tmb',
+            'pontuacao',
+        ]);
+
+        $bioimpedance->fill($bioimpedanceEdit);
+        $bioimpedance->save();
+        
+        return ['message' => 'Editado com sucesso!'];
     }
 
     /**

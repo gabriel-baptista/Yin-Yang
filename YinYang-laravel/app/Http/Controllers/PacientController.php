@@ -34,7 +34,21 @@ class PacientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pacient = $request->only([
+            'id_user',
+            'id_nutricionist',
+            'nome',
+            'login',
+            'password',
+            'email',
+            'celular',
+            'ativo',
+            'nivel_acesso',
+        ]);
+
+        Pacient::create($pacient);
+
+        return ['message' => 'Cadastrado com sucesso!'];
     }
 
     /**
@@ -68,7 +82,24 @@ class PacientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pacient = Pacient::find($id);
+
+        $pacientEdit = $request->only([
+            'id_user',
+            'id_nutricionist',
+            'nome',
+            'login',
+            'password',
+            'email',
+            'celular',
+            'ativo',
+            'nivel_acesso',
+        ]);
+
+        $pacient->fill($pacientEdit);
+        $pacient->save();
+
+        return ['message' => 'Editado com sucesso'];
     }
 
     /**

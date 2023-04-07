@@ -34,7 +34,15 @@ class ReceipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $receip = $request->only([
+            'íd_pacient',
+            'ingredientes',
+            'modo_preparo',
+        ]);
+
+        Receip::create($receip);
+
+        return ['message' => 'Cadastrado com sucesso!'];
     }
 
     /**
@@ -68,7 +76,18 @@ class ReceipController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $receip = Receip::find($id);
+
+        $receipEdit = $request->only([
+            'íd_pacient',
+            'ingredientes',
+            'modo_preparo',
+        ]);
+
+        $receip->fill($receipEdit);
+        $receip->save();
+
+        return ['message' => 'Editado com sucesso'];
     }
 
     /**

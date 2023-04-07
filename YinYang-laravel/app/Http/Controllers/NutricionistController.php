@@ -34,7 +34,23 @@ class NutricionistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $nutricionist = $request->only([
+            'id_user',
+            'nome',
+            'email',
+            'celular',
+            'crn',
+            'estado',
+            'cidade',
+            'bairro',
+            'rua',
+            'cep',
+        ]);
+
+        Meal::create($meal);
+
+        return ['message' => 'Cadastrado com sucesso!'];
+
     }
 
     /**
@@ -68,7 +84,25 @@ class NutricionistController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $meal = Meal::find($id);
+
+        $mealEdit = $request->only([
+            'id_user',
+            'nome',
+            'email',
+            'celular',
+            'crn',
+            'estado',
+            'cidade',
+            'bairro',
+            'rua',
+            'cep',
+        ]);
+
+        $meal->fill($mealEdit);
+        $meal->save();
+        
+        return ['message' => 'Editado com sucesso'];
     }
 
     /**
