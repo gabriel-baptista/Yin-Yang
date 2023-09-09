@@ -83,7 +83,11 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" fontWeight="bold" color={colors.greenAccent[500]}>
+                <Typography
+                  variant="h3"
+                  fontWeight="bold"
+                  color={colors.greenAccent[500]}
+                >
                   YinYang
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -93,7 +97,7 @@ const Sidebar = () => {
             )}
           </MenuItem>
 
-            {/* foto de usuario / nome de usuario / funcao */}
+          {/* foto de usuario / nome de usuario / funcao */}
           {/* {!isCollapsed && (
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
