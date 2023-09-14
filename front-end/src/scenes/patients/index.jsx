@@ -1,15 +1,15 @@
 // renomear arquivo depois
 import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar, ptBR } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData"; // retirar depois
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { mockDataPatients } from "../../data/mockData"; // retirar depois
+// import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
+// import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
+// import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Header from "../../components/Header";
 
-const Team = () => {
+const Patients = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -66,14 +66,53 @@ const Team = () => {
   ];
 
   return (
-    <Box m="20px">
-      {/* alterar o texto abaixo */}
+    <Box m="10px">
       <Header title="Pacientes" subtitle="" />
-      <Box m="40px 0 0 0" height="75vh ">
-        <DataGrid rows={mockDataTeam} columns={columns} />
+      <Box
+        m="40px 0 0 0"
+        height="75vh"
+        sx={{
+          // estilizando a datagrid
+          "& .MuiDataGrid-root": {
+            border: "none",
+          },
+          "& .MuiDataGrid-cell": {
+            borderBottom: "none",
+          },
+          "& .name-column--cell": {
+            color: colors.greenAccent[300],
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            // backgroundColor: colors.greenAccent[600],
+            backgroundColor: colors.primary[400],
+            borderBottom: "none",
+          },
+          "& .MuiDataGrid-virtualScroller": {
+            // backgroundColor: colors.primary[400],
+          },
+          "& .MuiDataGrid-footerContainer": {
+            borderTop: "none",
+            // backgroundColor: colors.greenAccent[700],
+            backgroundColor: colors.primary[400],
+          },
+          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+            color: `${colors.grey[100]} !important`
+          }
+        }}
+      >
+        <DataGrid
+          rowHeight={40}
+          rows={mockDataPatients}
+          columns={columns}
+          slots={{
+            toolbar: GridToolbar,
+          }}
+          pageSizeOptions={[25, 50, 100]}
+          localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
+        />
       </Box>
     </Box>
   );
 };
 
-export default Team;
+export default Patients;

@@ -143,35 +143,35 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Cadastrar"
-              to="/team"
+              to="/form"
               icon={<PersonAddAlt1OutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Calendário"
-              to="/team"
+              to="/calendar"
               icon={<EventOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pacientes"
-              to="/team"
+              to="/patients"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Receitas"
-              to="/team"
+              to="/recipes"
               icon={<StickyNote2OutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Sair"
-              to="/team"
+              to="/logoff"
               icon={<LogoutOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
