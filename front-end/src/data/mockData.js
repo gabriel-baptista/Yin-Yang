@@ -1,6 +1,6 @@
 import { tokens } from "../theme";
 
-export const mockDataTeam = [
+export const mockDataPatients = [
   {
     id: 1,
     name: "Jon Snow",
