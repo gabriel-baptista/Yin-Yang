@@ -11,7 +11,7 @@ import Pacients from "./scenes/patients";
 // import Invoices from "./scenes/invoices";
 // import Contacts from "./scenes/contacts";
 // import Bar from "./scenes/bar";
-// import Form from "./scenes/form";
+import Form from "./scenes/form";
 // import Line from "./scenes/pine";
 // import Pie from "./scenes/pie";
 // import FAQ from "./scenes/faq";
@@ -35,7 +35,7 @@ const App = () => {
               <Route path="/patients" element={<Pacients />} />
               {/* <Route path="/" element={<Contacts />} /> */}
               {/* <Route path="/" element={<Invoices />} /> */}
-              {/* <Route path="/" element={<Form />} /> */}
+              <Route path="/form" element={<Form />} />
               {/* <Route path="/" element={<Bar />} /> */}
               {/* <Route path="/" element={<Pie />} /> */}
               {/* <Route path="/" element={<Line />} /> */}
