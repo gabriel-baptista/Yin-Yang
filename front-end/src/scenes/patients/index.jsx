@@ -93,7 +93,7 @@ const Patients = () => {
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
             // backgroundColor: colors.greenAccent[700],
-            backgroundColor: colors.primary[400],
+            // backgroundColor: colors.primary[400],
           },
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
             color: `${colors.grey[100]} !important`
@@ -107,7 +107,7 @@ const Patients = () => {
           slots={{
             toolbar: GridToolbar,
           }}
-          pageSizeOptions={[25, 50, 100]}
+          pageSizeOptions={[3, 20, 50]}
           localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
         />
       </Box>
