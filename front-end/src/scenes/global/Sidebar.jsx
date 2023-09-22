@@ -143,21 +143,21 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Cadastrar"
-              to="/form"
+              to="/formulario"
               icon={<PersonAddAlt1OutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Calendário"
-              to="/calendar"
+              to="/calendario"
               icon={<EventOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pacientes"
-              to="/patients"
+              to="/pacientes"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
