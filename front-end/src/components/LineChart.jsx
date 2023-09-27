@@ -55,7 +55,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
       }}
       yFormat=" >-.2f"
       curve="catmullRom"
-      enableArea={true}
+      enableArea={false}
       axisTop={null}
       axisRight={null}
       axisBottom={{
