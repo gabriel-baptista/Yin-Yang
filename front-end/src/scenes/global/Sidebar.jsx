@@ -176,6 +176,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            <Item
+              title="TESTE"
+              to="/line"
+              icon={<LogoutOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 
             {/* verificar */}
 {/* 

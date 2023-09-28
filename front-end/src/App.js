@@ -10,10 +10,10 @@ import Dashboard from "./scenes/dashboard";
 import Pacients from "./scenes/patients";
 import Form from "./scenes/form";
 import Calendario from "./scenes/calendar";
+import Line from "./scenes/line";
 // import Invoices from "./scenes/invoices";
 // import Contacts from "./scenes/contacts";
 // import Bar from "./scenes/bar";
-// import Line from "./scenes/pine";
 // import Pie from "./scenes/pie";
 // import FAQ from "./scenes/faq";
 // import Geography from "./scenes/geography";
@@ -35,9 +35,9 @@ const App = () => {
               <Route path="/pacientes" element={<Pacients />} />
               <Route path="/formulario" element={<Form />} />
               <Route path="/calendario" element={<Calendario />} />
+              <Route path="/line" element={<Line />} />
               {/* <Route path="/" element={<Bar />} /> */}
               {/* <Route path="/" element={<Pie />} /> */}
-              {/* <Route path="/" element={<Line />} /> */}
               {/* <Route path="/" element={<FAQ />} /> */}
               {/* <Route path="/" element={<Geography />} /> */}
             </Routes>
