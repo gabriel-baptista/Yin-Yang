@@ -432,7 +432,7 @@ export const mockPieData = [
 
 export const mockLineData = [
   {
-    id: "Gabriel",
+    id: " ",
     color: tokens("dark").greenAccent[500],
     data: [
       {
