@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('anamnesis', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->unsignedInteger('id_pacient');
+            $table->unsignedInteger('id_patient');
             $table->string('objetivo_acompanhamento', 100);
             $table->string('plano_mais_exercicios', 100);
             $table->string('dificuldade', 100);
@@ -39,7 +39,7 @@ return new class extends Migration
             $table->string('motivacao', 100);
             $table->timestamps();
             
-            $table->foreign('id_pacient')->references('id')->on('pacients');
+            $table->foreign('id_patient')->references('id')->on('patients');
         });
     }
 

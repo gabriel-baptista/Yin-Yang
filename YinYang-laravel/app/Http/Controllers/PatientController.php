@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Meal;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class MealController extends Controller
+class patientController extends Controller
 {
-    public function __construct(private Meal $meal)
+    public function __construct(private Patient $patients)
     {   
     }
 
     public function store(Request $request)
     {
-        $this->meal->store($request->input());
+        $this->patients->store($request->input());
         
         return ['message' => 'Cadatrado com sucesso'];
     }
+
     
     /**
      * Update the specified resource in storage.
@@ -28,7 +29,7 @@ class MealController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->meal->edit($request->input(), $id);
+        $this->patients->edit($request->input(), $id);
         
         return ['message' => 'Cadatrado com sucesso'];
     }
@@ -41,7 +42,7 @@ class MealController extends Controller
      */
     public function destroy($id)
     {
-        $this->meal->destroy($id);
+        $this->patients->destroy($id);
 
         return ['message' => 'Deletado com sucesso'];
     }

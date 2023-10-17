@@ -2,102 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Receip;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class ReceipController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $receip = $request->only([
-            'íd_pacient',
-            'ingredientes',
-            'modo_preparo',
-        ]);
 
-        Receip::create($receip);
-
-        return ['message' => 'Cadastrado com sucesso!'];
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $receip = Receip::find($id);
-
-        $receipEdit = $request->only([
-            'íd_pacient',
-            'ingredientes',
-            'modo_preparo',
-        ]);
-
-        $receip->fill($receipEdit);
-        $receip->save();
-
-        return ['message' => 'Editado com sucesso'];
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+     public function __construct(private Receip $receips)
+     {   
+     }
+ 
+     public function store(Request $request)
+     {
+         $this->receips->store($request->input());
+         
+         return ['message' => 'Cadatrado com sucesso'];
+     }
+ 
+     
+     /**
+      * Update the specified resource in storage.
+      *
+      * @param  \Illuminate\Http\Request  $request
+      * @param  int  $id
+      * @return \Illuminate\Http\Response
+      */
+     public function update(Request $request, $id)
+     {
+         $this->receips->edit($request->input(), $id);
+         
+         return ['message' => 'Cadatrado com sucesso'];
+     }
+ 
+     /**
+      * Remove the specified resource from storage.
+      *
+      * @param  int  $id
+      * @return \Illuminate\Http\Response
+      */
+     public function destroy($id)
+     {
+         $this->receips->destroy($id);
+ 
+         return ['message' => 'Deletado com sucesso'];
+     }
 }

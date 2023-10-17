@@ -2,79 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nutricionist;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class NutricionistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function __construct(private Nutricionist $nutricionist)
+    {   
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-         $nutricionist = $request->only([
-            'id_user',
-            'nome',
-            'email',
-            'celular',
-            'crn',
-            'estado',
-            'cidade',
-            'bairro',
-            'rua',
-            'cep',
-        ]);
-
-        Meal::create($meal);
-
-        return ['message' => 'Cadastrado com sucesso!'];
-
+        $this->nutricionist->store($request->input());
+        
+        return ['message' => 'Cadatrado com sucesso'];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -84,25 +29,9 @@ class NutricionistController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $meal = Meal::find($id);
-
-        $mealEdit = $request->only([
-            'id_user',
-            'nome',
-            'email',
-            'celular',
-            'crn',
-            'estado',
-            'cidade',
-            'bairro',
-            'rua',
-            'cep',
-        ]);
-
-        $meal->fill($mealEdit);
-        $meal->save();
+        $this->nutricionist->edit($request->input(), $id);
         
-        return ['message' => 'Editado com sucesso'];
+        return ['message' => 'Cadatrado com sucesso'];
     }
 
     /**
@@ -113,6 +42,8 @@ class NutricionistController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->nutricionist->destroy($id);
+
+        return ['message' => 'Deletado com sucesso'];
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AnamnesisController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +14,66 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-$controllerPath = 'App\Http\Controllers';
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 //Anamese
-Route::post('/anamnese', [AnamnesisController::class, 'store']);
-Route::put('/anamnese', [AnamnesisController::class, 'update']);
+Route::controller(AnamnesisController::class)
+    ->middleware('auth:sanctum')
+    ->group(function () {
+        Route::post('/anamnese', 'store');
+        Route::put('/anamnese/{id}', 'edit');
+        Route::delete('/anamnese/{id}', 'erase');
+    });
+
+
+//Appointment
+Route::controller(AppointmentController::class)
+    ->middleware('auth:sanctum')
+    ->group(function () {
+        Route::post('/appointment', 'store');
+        Route::put('/appointment/{id}', 'edit');
+        Route::delete('/appointment/{id}', 'erase');
+    });
+
+//Bioimpedance
+Route::controller(BioimpedanceController::class)
+    ->middleware('auth:sanctum')
+    ->group(function () {
+        Route::post('/bioimpedance', 'store');
+        Route::put('/bioimpedance/{id}', 'edit');
+        Route::delete('/bioimpedance/{id}', 'erase');
+    });
+
+//Meal
+Route::controller(MealController::class)
+    ->middleware('auth:sanctum')
+    ->group(function () {
+        Route::post('/meal', 'store');
+        Route::put('/meal/{id}', 'edit');
+        Route::delete('/meal/{id}', 'erase');
+    });
+
+//Nutricionist
+Route::controller(NutricionistController::class)
+    ->middleware('auth:sanctum')
+    ->group(function () {
+        Route::post('/nutricionist', 'store');
+        Route::put('/nutricionist/{id}', 'edit');
+        Route::delete('/nutricionist/{id}', 'erase');
+    });
+
+//Receip
+Route::controller(ReceipController::class)
+    ->middleware('auth:sanctum')
+    ->group(function () {
+        Route::post('/receip', 'store');
+        Route::put('/receip/{id}', 'edit');
+        Route::delete('/receip/{id}', 'erase');
+    });
+
+//User
+Route::controller(UserController::class)
+    ->middleware('auth:sanctum')
+    ->group(function () {
+        Route::post('/user', 'store');
+        Route::put('/user/{id}', 'edit');
+        Route::delete('/user/{id}', 'erase');
+    });

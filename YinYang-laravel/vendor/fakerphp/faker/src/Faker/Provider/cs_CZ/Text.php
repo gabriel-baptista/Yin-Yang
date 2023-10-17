@@ -721,7 +721,7 @@ Prokopovi vstoupily do očí slzy samou lítostí. „Jak je tam daleko… pěš
 Pošťák účastně přemýšlel. „No, hodinu,“ řekl.
 „Ale já… nemohu jít pěšky! Já musím k doktoru Tomšovi!“ protestoval Prokop
 zdrcen.
-Pošťák uvažoval. „Vy jste… jako… pacient?“
+Pošťák uvažoval. „Vy jste… jako… patient?“
 „Mně je zle,“ zamumlal Prokop; skutečně se chvěl slabostí a zimou.
 Pošťák přemýšlel a potřásal hlavou. „Když to nejde,“ ozval se konečně.
 „Já se vejdu, já… kdyby byl jen kousek místa, já…“
@@ -965,7 +965,7 @@ nemocnice je daleko, a holka nad vámi tento, brečela… a vůbec, přišel jst
 jako host k… Jirkovi, k synovi, no ne? Tak jsme si vás tu nechali, rozumíte
 mi? Nu, nám to nevadí. Ale takového zábavného hosta jsem ještě neviděl. Dvacet
 dní prospat, pěkně děkuju! Když vám kolega primář řezal ruku, ani jste se
-neráčil probudit, co? Tichý pacient, namouduši. No, to už je jedno. Jen když
+neráčil probudit, co? Tichý patient, namouduši. No, to už je jedno. Jen když
 jste z toho venku, člověče.“ Doktor se plácl hlučně do stehna. „U čerta,
 nespěte už! Pane, hej, pane, mohl byste usnout nadobro, slyšíte? U všech
 všudy, hleďte se trochu přemáhat! Nechte toho, slyšíte?“
@@ -989,7 +989,7 @@ nevěděla, o čem mluvit. Tak, teď zvedla hlavu a pootevřela ústa; slyšme, 
 ní vyletí; ale zatím se jenom zastyděla, spolkla to a sklopila hlavu ještě
 níž; je vidět jen dlouhé řasy, jak se chvějí nad líčkem.
 „Tati je tak prudký,“ ozvala se konečně. „On je tak zvyklý křičet… vadit se… s
-pacienty…“ Látka jí bohužel došla; zato – jako na zavolanou – ocitla se jí v
+patienty…“ Látka jí bohužel došla; zato – jako na zavolanou – ocitla se jí v
 prstech zástěra a nechala se dlouho a všelijak zajímavě skládat, za pozorného
 mžikání ohnutých řas.
 „Co to řinčí?“ optal se Prokop po delší době.
@@ -1040,7 +1040,7 @@ zalévat tatínkovy záhony. V pravé ruce nese konev, levá plave ve vzduchu;
 stříbrná prška šumí do mladé hlíny, a naskytne-li se nablízku Honzík, dostane
 ji na zadek nebo na pitomou veselou hlavu; tu zoufale kvikne a hledá ochranu u
 Prokopa.
-Celé ráno se trousí do ordinace pacienti. Chrchlají v čekárně a mlčí, každý
+Celé ráno se trousí do ordinace patienti. Chrchlají v čekárně a mlčí, každý
 mysle jen na své utrpení. Někdy se ozve z ordinace strašný křik, když doktor
 tahá zub nějakému kloučeti. Tu se zase Anči v panice zachrání k Prokopovi,
 bledá a zrovna bez sebe, úzkostně mžiká krásnými řasami a čeká, až strašná
@@ -3527,7 +3527,7 @@ Sotva zmizelo toto zjevení, ťuká někdo na dveře a pan Paul šeptá s nějak
 komornou. Hned nato vchází princezna, má ještě bílé tenisové šaty a v hnědé
 tváři vzdor a kajícnost; neboť se přichází dobrovolně omluvit ze svého
 hrozného uličnictví. Ale než může promluvit, rozzáří se drsný, hrubě omítnutý
-Prokopův obličej dětským úsměvem. „Tak co,“ praví pyšně pacient, „bojím se
+Prokopův obličej dětským úsměvem. „Tak co,“ praví pyšně patient, „bojím se
 koně nebo ne?“
 Princezna se zarděla tak, že by to nikdo do ní neřekl; až ji to samu zamrzelo
 a uvedlo do rozpaků. Nicméně se přemohla, a rázem je z ní vznešená hostitelka;
@@ -3575,7 +3575,7 @@ explodovala.
 Teď už pan Paul vozí Prokopa v lenošce po parku; pan Holz je nyní zbytečný,
 ale činí se, neboť byl v něm objeven veliký talent masérský, a Prokop cítí z
 jeho tuhých prstů zrovna prýštit blahodárnou explozívní sílu. Potká-li někdy
-princezna pacienta v parku, promluví něco s dokonalou a přesně odměřenou
+princezna patienta v parku, promluví něco s dokonalou a přesně odměřenou
 zdvořilostí, a Prokop k svému vzteku nikdy nepochopí, jak se to dělá; neboť
 sám je buď příliš hrubý, nebo příliš sdílný. Ostatní společnost vidí v
 Prokopovi podivína; to jim dává právo nebrat ho vážně a jemu volnost býti k
@@ -5429,10 +5429,10 @@ utišil se a usnul jako zabitý. Po třech hodinách se zarosil novým vydatným
 potem; byl tak zesláblý, že sotva dýchal. Princezna zalarmovala lékařské
 konzilium. Teplota povážlivě poklesla, tep sto sedm, puls nitkovitý; chtěli mu
 dát ihned kafrovou injekci, ale místní venkovský doktor, zeselštělý a
-ostýchavý mezi takovými kapacitami, mínil, že on nikdy pacienta nebudí. „Aspoň
+ostýchavý mezi takovými kapacitami, mínil, že on nikdy patienta nebudí. „Aspoň
 zaspí svůj exitus, že?“ bručel slavný odborník. „Máte dobře.“
 Princezna, úplně vysílená, si šla na hodinku lehnout, když ji ujistili, že
-bezprostředně a tak dále; a u pacienta zůstal dr. Krafft, slíbiv, že za hodinu
+bezprostředně a tak dále; a u patienta zůstal dr. Krafft, slíbiv, že za hodinu
 jí vzkáže, jak a co je. Nevzkázal nic, a znepokojená princezna se šla podívat.
 Našla Kraffta, jak stojí uprostřed pokoje, máchá rukou a z plných plic káže o
 telepatii dovolávaje se Richeta, Jamese a kdekoho; a Prokop ho s jasnýma očima
@@ -5452,7 +5452,7 @@ najednou se jí zamžily oči, pohladila Kraffta po zrzavé lbi a utekla.
 klidný. Cítil jsem, jak mně to fluidum vyvěrá z prstů. Jistě by se to dalo
 fotografovat, víte? jako ultrazáření.“
 Přišly kapacity, vyhodily především Kraffta přes jeho protesty a znovu měřily
-teplotu, puls a všechno možné. Teplota vyšší, puls devadesát šest, pacient
+teplotu, puls a všechno možné. Teplota vyšší, puls devadesát šest, patient
 jeví chuť k jídlu; nu, to už je slušný obrat. Načež se kapacity odebraly do
 druhého křídla zámku, kde jich bylo také třeba; neboť princezna hořela skoro
 čtyřiceti stupni horečky, nadobro sesutá po šedesáti hodinách bdění; mimoto
@@ -5463,7 +5463,7 @@ Přihnal se Carson trochu rozpačitý, ale dopadlo do dobře; Prokop se o ničem
 minulém nezmínil, a konečně Carson vyhrkl, že ty hrozné třaskaviny, které
 Prokop vyráběl v posledních dnech, se při zkoušce ukázaly asi tak výbušné jako
 piliny; zkrátka – zkrátka musel mít Prokop už pořádnou horečku, když je dělal.
-I to přijal pacient klidně, a dal se teprve po chvíli do smíchu. „No víte,“
+I to přijal patient klidně, a dal se teprve po chvíli do smíchu. „No víte,“
 řekl dobromyslně, „ale přesto jsem vám nahnal pořádně strachu.“
 „Nahnal,“ přiznával se Carson ochotně. „Jakživ jsem se tolik nebál o sebe a o
 fabriku.“

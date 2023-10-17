@@ -34,8 +34,8 @@ Route::resource('/refeicao', $controllerPath . '\MealController')->names('meal')
 //Nutricionist
 Route::resource('/nutricionista', $controllerPath . '\NutricionistController')->names('nutricionist')->parameters(['nutricionist' => 'nutricionist']);
 
-//Pacient
-Route::resource('/paciente', $controllerPath . '\PacientController')->names('pacient')->parameters(['pacient' => 'pacient']);
+//patient
+Route::resource('/patiente', $controllerPath . '\patientController')->names('patient')->parameters(['patient' => 'patient']);
 
 //Receips
 Route::resource('/receitas', $controllerPath . '\ReceipController')->names('receip')->parameters(['receip' => 'receip']);

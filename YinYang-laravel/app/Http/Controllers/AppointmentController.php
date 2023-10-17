@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class AppointmentController extends Controller
 {
@@ -13,19 +14,18 @@ class AppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $appointment = $request->only([
-            'id_pacient',
-            'id_nutricionist',
-            'status',
-        ]);
-
-        Appointment::create($appointment);
-
-        return ['message' => 'Cadastrado com sucesso!'];
+    public function __construct(private Appointment $appointment)
+    {   
     }
 
+    public function store(Request $request)
+    {
+        $this->appointment->store($request->input());
+        
+        return ['message' => 'Cadatrado com sucesso'];
+    }
+
+    
     /**
      * Update the specified resource in storage.
      *
@@ -35,18 +35,9 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $appointment = Appointment::find($id);
-
-        $appointmentEdit = $request->only([
-            'id_pacient',
-            'is_nutricionist',
-            'status',
-        ]);
-
-        $appointment->fill($appointmentEdit);
-        $appointment->save();
-
-        return ['message' => 'Editado com sucesso'];
+        $this->appointment->edit($request->input(), $id);
+        
+        return ['message' => 'Cadatrado com sucesso'];
     }
 
     /**
@@ -57,10 +48,8 @@ class AppointmentController extends Controller
      */
     public function destroy($id)
     {
-        $appointment = Appointment::find($id);
+        $this->appointment->destroy($id);
 
-        $appointment->desroy();
-
-        return ['message' => 'Deletado com sucesso!'];
+        return ['message' => 'Deletado com sucesso'];
     }
 }

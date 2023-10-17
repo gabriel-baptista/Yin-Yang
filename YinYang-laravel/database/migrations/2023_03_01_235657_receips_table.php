@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('receips', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->unsignedInteger('id_pacient');
+            $table->unsignedInteger('id_nutricionist');
             $table->longText('ingredientes');
             $table->longText('modo_preparo');
             $table->timestamps();
 
-            $table->foreign('id_pacient')->references('id')->on('pacients');
+            $table->foreign('id_nutricionist')->references('id')->on('nutricionist');
         });
     }
 

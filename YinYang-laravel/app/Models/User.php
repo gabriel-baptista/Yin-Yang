@@ -18,27 +18,61 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'login',
         'password',
+        'ativo',
+        'nivel_acesso',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+     //Function create user in BD
+
+     public function store($user)
+     {
+         $this->fill($user);
+         $this->save();
+         return ["message" => "Anaminesia registered successfully!"];
+     }
+ 
+     //Function update user in BD
+ 
+     public function edit($user, $id)
+     {
+         $infoEdit = User::find($id);
+ 
+         if (!$infoEdit) {
+             return ["message" => "User not found!"];
+         }
+ 
+         $infoEdit->fill($user);
+         $infoEdit->save();
+ 
+         return ["message" => "Successfully altered anaminesia!"];
+     }
+ 
+     //Function delete user in BD
+ 
+     public function erase($id)
+     {
+         $infoErase = User::find($id);
+ 
+         if (!$infoErase) {
+             return ["message" => "User not found!"];
+         }
+ 
+         $infoErase->delete();
+ 
+         return ["message" => "User successfully deleted!"];
+     }
+ 
+     //Function extend anamneses with patient in BD
+ 
+     public function patients()
+     {
+         return $this->belongsTo(Patient::class, 'id_patient', 'id');
+     }
 }

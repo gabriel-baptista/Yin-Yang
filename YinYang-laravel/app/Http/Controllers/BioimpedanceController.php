@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bioimpedance;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class BioimpedanceController extends Controller
 {
@@ -12,49 +14,18 @@ class BioimpedanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function __construct(private Bioimpedance $bioimpedance)
+    {   
+    }
+
     public function store(Request $request)
     {
-        $bioimpedance = $request->only([
-            'id_appointment',
-            'peso_consulta',
-            'musculo_esqueletico',
-            'massa_magra',
-            'gordura_corporal',
-            'massa_gorda',
-            'agua_consulta',
-            'circunferencia_cintura',
-            'imc',
-            'tmb',
-            'pontuacao',
-        ]);
-
-        Bioimpedance::create($bioimpedance);
-
-        return ['message' => 'Cadastrado com sucesso!'];
+        $this->bioimpedance->store($request->input());
+        
+        return ['message' => 'Cadatrado com sucesso'];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -64,26 +35,9 @@ class BioimpedanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $bioimpedance = Bioimpedance::find($id);
-
-        $bioimpedanceEdit = $request->only([
-            'id_appointment',
-            'peso_consulta',
-            'musculo_esqueletico',
-            'massa_magra',
-            'gordura_corporal',
-            'massa_gorda',
-            'agua_consulta',
-            'circunferencia_cintura',
-            'imc',
-            'tmb',
-            'pontuacao',
-        ]);
-
-        $bioimpedance->fill($bioimpedanceEdit);
-        $bioimpedance->save();
+        $this->bioimpedance->edit($request->input(), $id);
         
-        return ['message' => 'Editado com sucesso!'];
+        return ['message' => 'Cadatrado com sucesso'];
     }
 
     /**
@@ -94,6 +48,8 @@ class BioimpedanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->bioimpedance->destroy($id);
+
+        return ['message' => 'Deletado com sucesso'];
     }
 }
