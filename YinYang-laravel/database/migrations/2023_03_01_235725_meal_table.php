@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('meal', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->unsignedInteger('id_pacient');
+            $table->unsignedInteger('id_patient');
             $table->string('horario');
             $table->longText('refeicao');
             $table->timestamps();
 
-            $table->foreign('id_pacient')->references('id')->on('pacients');
+            $table->foreign('id_patient')->references('id')->on('patients');
         });
     }
 

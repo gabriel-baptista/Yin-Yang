@@ -2,69 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Meal;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class MealController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function __construct(private Meal $meal)
+    {   
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $meal = Meal::find($id);
-
-        $meal = $request->only([
-            'id_pacient',
-            'horario',
-            'refeicao',
-        ]);
+        $this->meal->store($request->input());
+        
+        return ['message' => 'Cadatrado com sucesso'];
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -74,19 +28,9 @@ class MealController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $meal = Meal::find($id);
-
-        $mealEdit = $request->only([
-            'id_pacient',
-            'horario',
-            'refeicao',
-        ]);
-
-        $meal->fill($mealEdit);
-        $meal->save();
-
-        return ['message' => 'Editado com sucesso'];
-
+        $this->meal->edit($request->input(), $id);
+        
+        return ['message' => 'Cadatrado com sucesso'];
     }
 
     /**
@@ -97,6 +41,8 @@ class MealController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->meal->erase($id);
+
+        return ['message' => 'Deletado com sucesso'];
     }
 }

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -18,27 +19,68 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'login',
         'password',
+        'ativo',
+        'nivel_acesso',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    //Function create user in BD
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function store($user)
+    {
+        $user['password'] = Hash::make($user['password']);
+
+        $this->fill($user);
+
+        $this->save();
+
+        return ["message" => "Anaminesia registered successfully!"];
+    }
+
+    //Function update user in BD
+
+    public function edit($infoEdit, $id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return ["message" => "User not found!"];
+        }
+
+        $user->fill($infoEdit);
+        $user->save();
+
+        return ["message" => "Successfully altered user!"];
+    }
+
+    public function resetPassword($password, $id){
+
+        $user = User::find($id);
+        
+        if (!$user) {
+            return ["message" => "User not found!"];
+        }
+
+        $user->password = Hash::make($password['password']);
+
+        $user->save();
+
+        return ["message" => "Successfully altered password!"];
+    }
+
+    //Function delete user in BD
+
+    public function erase($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return ["message" => "User not found!"];
+        }
+
+        $user->delete();
+
+        return ["message" => "User successfully deleted!"];
+    }
 }

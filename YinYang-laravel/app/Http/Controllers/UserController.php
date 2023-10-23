@@ -2,71 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(private User $user)
+    {
+    }
+
     public function store(Request $request)
     {
-        $user = $request->only([
-            'login',
-            'password',
-            'ativo',
-            'nivel_acesso',
-        ]);
+        $this->user->store($request->input());
 
-        Appointment::create($user);
-
-        return ['message' => 'Cadastrado com sucesso!'];
+        return ['message' => 'Cadatrado com sucesso'];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -77,19 +36,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-
-        $userEdit = $request->only([
-            'login',
-            'password',
-            'ativo',
-            'nivel_acesso',
-        ]);
-
-        $user->fill($userEdit);
-        $user->save();
+        $this->user->edit($request->input(), $id);
 
         return ['message' => 'Editado com sucesso'];
+    }
+
+    public function resetPassword(Request $request, $id)
+    {
+        $this->user->resetPassword($request->input(), $id);
+
+        return ['message' => 'Senha alterada com sucesso'];
     }
 
     /**
@@ -100,6 +56,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->user->erase($id);
+
+        return ['message' => 'Deletado com sucesso'];
     }
 }

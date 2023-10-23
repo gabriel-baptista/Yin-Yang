@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Anamnesis;
+use Illuminate\Routing\Controller;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class AnamnesisController extends Controller
@@ -14,34 +15,14 @@ class AnamnesisController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(private Anamnesis $anamnesis)
+    {   
+    }
+
     public function store(Request $request)
     {
-        $anamnesis = $request->only([
-            'id_pacient', 
-            'objetivo_acompanhamento', 
-            'plano_mais_execicios', 
-            'dificuldades',
-            'uso_medicamentos',
-            'medicamentos',
-            'doencas',
-            'alergias_intolerancias',
-            'horario_mais_fome',
-            'mastigacao',
-            'habito_alimentacao',
-            'agua_dia',
-            'peso_anamnese',
-            'intestino',
-            'sensacao_comer',
-            'peso_inicial',
-            'horas_sono',
-            'tipo_sono',
-            'estresse',
-            'ansiedade',
-            'equilibrio_vida',
-            'motivacao',
-        ]);
-
-        Anamnesis::create($anamnesis);
+        $this->anamnesis->store($request->input());
         
         return ['message' => 'Cadatrado com sucesso'];
     }
@@ -54,39 +35,11 @@ class AnamnesisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function erase(Request $request, $id)
     {
-        $anamnesis = Anamnesis::find($id);
-
-        $anamnesisEdit = $request->only([
-            'id_pacient', 
-            'objetivo_acompanhamento', 
-            'plano_mais_execicios', 
-            'dificuldades',
-            'uso_medicamentos',
-            'medicamentos',
-            'doencas',
-            'alergias_intolerancias',
-            'horario_mais_fome',
-            'mastigacao',
-            'habito_alimentacao',
-            'agua_dia',
-            'peso_anamnese',
-            'intestino',
-            'sensacao_comer',
-            'peso_inicial',
-            'horas_sono',
-            'tipo_sono',
-            'estresse',
-            'ansiedade',
-            'equilibrio_vida',
-            'motivacao',
-        ]);
-
-        $anamnesis->fill($anamnesisEdit);
-        $anamnesis->save();
+        $this->anamnesis->edit($request->input(), $id);
         
-        return ['message' => 'Editado com sucesso'];
+        return ['message' => 'Cadatrado com sucesso'];
     }
 
     /**
@@ -97,8 +50,12 @@ class AnamnesisController extends Controller
      */
     public function destroy($id)
     {
-        Anamnesis::destroy($id);
+        $this->anamnesis->destroy($id);
 
         return ['message' => 'Deletado com sucesso'];
+    }
+
+    public function search($id = null){
+
     }
 }

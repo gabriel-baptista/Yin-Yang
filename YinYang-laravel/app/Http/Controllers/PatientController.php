@@ -2,25 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Appointment;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class AppointmentController extends Controller
+class patientController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function __construct(private Appointment $appointment)
+    public function __construct(private Patient $patients)
     {   
     }
 
     public function store(Request $request)
     {
-        $this->appointment->store($request->input());
+        $this->patients->store($request->input());
         
         return ['message' => 'Cadatrado com sucesso'];
     }
@@ -35,7 +29,7 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->appointment->edit($request->input(), $id);
+        $this->patients->edit($request->input(), $id);
         
         return ['message' => 'Cadatrado com sucesso'];
     }
@@ -48,7 +42,7 @@ class AppointmentController extends Controller
      */
     public function destroy($id)
     {
-        $this->appointment->erase($id);
+        $this->patients->erase($id);
 
         return ['message' => 'Deletado com sucesso'];
     }
