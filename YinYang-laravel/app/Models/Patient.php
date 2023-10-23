@@ -34,16 +34,16 @@ class patient extends Model
 
     //Function update patients in BD
 
-    public function edit($patients, $id)
+    public function edit($infoEdit, $id)
     {
-        $infoEdit = Patient::find($id);
+        $patients = Patient::find($id);
 
-        if (!$infoEdit) {
+        if (!$patients) {
             return ["message" => "Patients not found!"];
         }
 
-        $infoEdit->fill($patients);
-        $infoEdit->save();
+        $patients->fill($infoEdit);
+        $patients->save();
 
         return ["message" => "Successfully altered anaminesia!"];
     }
@@ -52,13 +52,13 @@ class patient extends Model
 
     public function erase($id)
     {
-        $infoErase = Patient::find($id);
+        $patients = Patient::find($id);
 
-        if (!$infoErase) {
+        if (!$patients) {
             return ["message" => "Patients not found!"];
         }
 
-        $infoErase->delete();
+        $patients->delete();
 
         return ["message" => "Patients successfully deleted!"];
     }

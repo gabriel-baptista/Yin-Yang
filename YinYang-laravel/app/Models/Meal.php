@@ -29,16 +29,16 @@ class Meal extends Model
 
     //Function update meal in BD
 
-    public function edit($meal, $id)
+    public function edit($infoEdit, $id)
     {
-        $infoEdit = Meal::find($id);
+        $meal = Meal::find($id);
 
-        if (!$infoEdit) {
+        if (!$meal) {
             return ["message" => "Meal not found!"];
         }
 
-        $infoEdit->fill($meal);
-        $infoEdit->save();
+        $meal->fill($infoEdit);
+        $meal->save();
 
         return ["message" => "Successfully altered anaminesia!"];
     }
@@ -47,13 +47,13 @@ class Meal extends Model
 
     public function erase($id)
     {
-        $infoErase = Meal::find($id);
+        $meal = Meal::find($id);
 
-        if (!$infoErase) {
+        if (!$meal) {
             return ["message" => "Meal not found!"];
         }
 
-        $infoErase->delete();
+        $meal->delete();
 
         return ["message" => "Meal successfully deleted!"];
     }

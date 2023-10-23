@@ -37,16 +37,16 @@ class Bioimpedance extends Model
 
     //Function update bioimpedance in BD
 
-    public function edit($bioimpedance, $id)
+    public function edit($infoEdit, $id)
     {
-        $infoEdit = Bioimpedance::find($id);
+        $bioimpedance = Bioimpedance::find($id);
 
-        if (!$infoEdit) {
+        if (!$bioimpedance) {
             return ["message" => "Bioimpedance not found!"];
         }
 
-        $infoEdit->fill($bioimpedance);
-        $infoEdit->save();
+        $bioimpedance->fill($infoEdit);
+        $bioimpedance->save();
 
         return ["message" => "Successfully altered bioimpedance!"];
     }
@@ -55,13 +55,13 @@ class Bioimpedance extends Model
 
     public function erase($id)
     {
-        $infoErase = Bioimpedance::find($id);
+        $bioimpedance = Bioimpedance::find($id);
 
-        if (!$infoErase) {
+        if (!$bioimpedance) {
             return ["message" => "Bioimpedance not found!"];
         }
 
-        $infoErase->delete();
+        $bioimpedance->delete();
 
         return ["message" => "Bioimpedance successfully deleted!"];
     }

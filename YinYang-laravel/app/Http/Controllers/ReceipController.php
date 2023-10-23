@@ -49,7 +49,7 @@ class ReceipController extends Controller
       */
      public function destroy($id)
      {
-         $this->receips->destroy($id);
+         $this->receips->erase($id);
  
          return ['message' => 'Deletado com sucesso'];
      }

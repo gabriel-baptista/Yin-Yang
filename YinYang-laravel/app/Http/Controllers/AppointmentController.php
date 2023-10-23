@@ -48,7 +48,7 @@ class AppointmentController extends Controller
      */
     public function destroy($id)
     {
-        $this->appointment->destroy($id);
+        $this->appointment->erase($id);
 
         return ['message' => 'Deletado com sucesso'];
     }

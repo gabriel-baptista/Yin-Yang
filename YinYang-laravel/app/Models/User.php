@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -26,53 +27,46 @@ class User extends Authenticatable
 
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
-     //Function create user in BD
+    //Function create user in BD
 
-     public function store($user)
-     {
-         $this->fill($user);
-         $this->save();
-         return ["message" => "Anaminesia registered successfully!"];
-     }
- 
-     //Function update user in BD
- 
-     public function edit($user, $id)
-     {
-         $infoEdit = User::find($id);
- 
-         if (!$infoEdit) {
-             return ["message" => "User not found!"];
-         }
- 
-         $infoEdit->fill($user);
-         $infoEdit->save();
- 
-         return ["message" => "Successfully altered anaminesia!"];
-     }
- 
-     //Function delete user in BD
- 
-     public function erase($id)
-     {
-         $infoErase = User::find($id);
- 
-         if (!$infoErase) {
-             return ["message" => "User not found!"];
-         }
- 
-         $infoErase->delete();
- 
-         return ["message" => "User successfully deleted!"];
-     }
- 
-     //Function extend anamneses with patient in BD
- 
-     public function patients()
-     {
-         return $this->belongsTo(Patient::class, 'id_patient', 'id');
-     }
+    public function store($user)
+    {
+        $user->password = Hash::make($user->password);
+        $this->fill($user);
+        $this->save();
+        return ["message" => "Anaminesia registered successfully!"];
+    }
+
+    //Function update user in BD
+
+    public function edit($infoEdit, $id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return ["message" => "User not found!"];
+        }
+
+        $user->fill($infoEdit);
+        $user->save();
+
+        return ["message" => "Successfully altered user!"];
+    }
+
+    //Function delete user in BD
+
+    public function erase($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return ["message" => "User not found!"];
+        }
+
+        $user->delete();
+
+        return ["message" => "User successfully deleted!"];
+    }
 }

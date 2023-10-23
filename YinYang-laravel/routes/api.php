@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\AnamnesisController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\MealController;
+use App\Http\Controllers\NutricionistController;
+use App\Http\Controllers\ReceipController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,65 +20,36 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Anamese
-Route::controller(AnamnesisController::class)
-    ->middleware('auth:sanctum')
-    ->group(function () {
-        Route::post('/anamnese', 'store');
-        Route::put('/anamnese/{id}', 'edit');
-        Route::delete('/anamnese/{id}', 'erase');
-    });
-
+Route::post('/anamnese', 'App\Http\Controllers\AnamnesisController@store');
+Route::put('/anamnese/{id}', 'App\Http\Controllers\AnamnesisController@update');
+Route::delete('/anamnese/{id}', 'App\Http\Controllers\AnamnesisController@destroy');
 
 //Appointment
-Route::controller(AppointmentController::class)
-    ->middleware('auth:sanctum')
-    ->group(function () {
-        Route::post('/appointment', 'store');
-        Route::put('/appointment/{id}', 'edit');
-        Route::delete('/appointment/{id}', 'erase');
-    });
+Route::post('/appointment', 'App\Http\Controllers\AppointmentController@store');
+Route::put('/appointment/{id}', 'App\Http\Controllers\AppointmentController@update');
+Route::delete('/appointment/{id}', 'App\Http\Controllers\AppointmentController@destroy');
 
 //Bioimpedance
-Route::controller(BioimpedanceController::class)
-    ->middleware('auth:sanctum')
-    ->group(function () {
-        Route::post('/bioimpedance', 'store');
-        Route::put('/bioimpedance/{id}', 'edit');
-        Route::delete('/bioimpedance/{id}', 'erase');
-    });
+Route::post('/bioimpedance', 'App\Http\Controllers\BioimpedanceController@store');
+Route::put('/bioimpedance/{id}', 'App\Http\Controllers\BioimpedanceController@update');
+Route::delete('/bioimpedance/{id}', 'App\Http\Controllers\BioimpedanceController@destroy');
 
 //Meal
-Route::controller(MealController::class)
-    ->middleware('auth:sanctum')
-    ->group(function () {
-        Route::post('/meal', 'store');
-        Route::put('/meal/{id}', 'edit');
-        Route::delete('/meal/{id}', 'erase');
-    });
+Route::post('/meal', 'App\Http\Controllers\MealController@store');
+Route::put('/meal/{id}', 'App\Http\Controllers\MealController@update');
+Route::delete('/meal/{id}', 'App\Http\Controllers\MealController@destroy');
 
 //Nutricionist
-Route::controller(NutricionistController::class)
-    ->middleware('auth:sanctum')
-    ->group(function () {
-        Route::post('/nutricionist', 'store');
-        Route::put('/nutricionist/{id}', 'edit');
-        Route::delete('/nutricionist/{id}', 'erase');
-    });
+Route::post('/nutricionist', 'App\Http\Controllers\NutricionistController@store');
+Route::put('/nutricionist/{id}', 'App\Http\Controllers\NutricionistController@update');
+Route::delete('/nutricionist/{id}', 'App\Http\Controllers\NutricionistController@destroy');
 
 //Receip
-Route::controller(ReceipController::class)
-    ->middleware('auth:sanctum')
-    ->group(function () {
-        Route::post('/receip', 'store');
-        Route::put('/receip/{id}', 'edit');
-        Route::delete('/receip/{id}', 'erase');
-    });
+Route::post('/receip', 'App\Http\Controllers\ReceipController@store');
+Route::put('/receip/{id}', 'App\Http\Controllers\ReceipController@update');
+Route::delete('/receip/{id}', 'App\Http\Controllers\ReceipController@destroy');
 
 //User
-Route::controller(UserController::class)
-    ->middleware('auth:sanctum')
-    ->group(function () {
-        Route::post('/user', 'store');
-        Route::put('/user/{id}', 'edit');
-        Route::delete('/user/{id}', 'erase');
-    });
+Route::post('/user/store', 'App\Http\Controllers\UserController@store');
+Route::put('/user/update/{id}', 'App\Http\Controllers\UserController@update');
+Route::delete('/user/destroy/{id}', 'App\Http\Controllers\UserController@destroy');

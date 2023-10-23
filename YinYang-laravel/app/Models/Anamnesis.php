@@ -48,16 +48,16 @@ class Anamnesis extends Model
 
     //Function update anamnesis in BD
 
-    public function edit($anamnesis, $id)
+    public function edit($infoEdit, $id)
     {
-        $infoEdit = Anamnesis::find($id);
+        $anamnesis = Anamnesis::find($id);
 
-        if (!$infoEdit) {
+        if (!$anamnesis) {
             return ["message" => "Anamnesis not found!"];
         }
 
-        $infoEdit->fill($anamnesis);
-        $infoEdit->save();
+        $anamnesis->fill($infoEdit);
+        $anamnesis->save();
 
         return ["message" => "Successfully altered anaminesia!"];
     }
@@ -66,13 +66,13 @@ class Anamnesis extends Model
 
     public function erase($id)
     {
-        $infoErase = Anamnesis::find($id);
+        $anamnesis = Anamnesis::find($id);
 
-        if (!$infoErase) {
+        if (!$anamnesis) {
             return ["message" => "Anamnesis not found!"];
         }
 
-        $infoErase->delete();
+        $anamnesis->delete();
 
         return ["message" => "Anamnesis successfully deleted!"];
     }

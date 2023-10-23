@@ -29,16 +29,16 @@ class Appointment extends Model
 
     //Function update appointment in BD
 
-    public function edit($appointment, $id)
+    public function edit($infoEdit, $id)
     {
-        $infoEdit = Appointment::find($id);
+        $appointment = Appointment::find($id);
 
-        if (!$infoEdit) {
+        if (!$appointment) {
             return ["message" => "Appointment not found!"];
         }
 
-        $infoEdit->fill($appointment);
-        $infoEdit->save();
+        $appointment->fill($infoEdit);
+        $appointment->save();
 
         return ["message" => "Successfully altered appointment!"];
     }
@@ -47,13 +47,13 @@ class Appointment extends Model
 
     public function erase($id)
     {
-        $infoErase = Appointment::find($id);
+        $appointment = Appointment::find($id);
 
-        if (!$infoErase) {
+        if (!$appointment) {
             return ["message" => "Appointment not found!"];
         }
 
-        $infoErase->delete();
+        $appointment->delete();
 
         return ["message" => "Appointment successfully deleted!"];
     }

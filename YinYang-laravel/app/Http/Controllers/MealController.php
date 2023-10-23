@@ -41,7 +41,7 @@ class MealController extends Controller
      */
     public function destroy($id)
     {
-        $this->meal->destroy($id);
+        $this->meal->erase($id);
 
         return ['message' => 'Deletado com sucesso'];
     }

@@ -42,7 +42,7 @@ class patientController extends Controller
      */
     public function destroy($id)
     {
-        $this->patients->destroy($id);
+        $this->patients->erase($id);
 
         return ['message' => 'Deletado com sucesso'];
     }

@@ -36,16 +36,16 @@ class Nutricionist extends Model
 
     //Function update nutricionist in BD
 
-    public function edit($nutricionist, $id)
+    public function edit($infoEdit, $id)
     {
-        $infoEdit = Nutricionist::find($id);
+        $nutricionist = Nutricionist::find($id);
 
-        if (!$infoEdit) {
+        if (!$nutricionist) {
             return ["message" => "Nutricionist not found!"];
         }
 
-        $infoEdit->fill($nutricionist);
-        $infoEdit->save();
+        $nutricionist->fill($infoEdit);
+        $nutricionist->save();
 
         return ["message" => "Successfully altered anaminesia!"];
     }
@@ -54,13 +54,13 @@ class Nutricionist extends Model
 
     public function erase($id)
     {
-        $infoErase = Nutricionist::find($id);
+        $nutricionist = Nutricionist::find($id);
 
-        if (!$infoErase) {
+        if (!$nutricionist) {
             return ["message" => "Nutricionist not found!"];
         }
 
-        $infoErase->delete();
+        $nutricionist->delete();
 
         return ["message" => "Nutricionist successfully deleted!"];
     }

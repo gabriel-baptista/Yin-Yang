@@ -42,7 +42,7 @@ class NutricionistController extends Controller
      */
     public function destroy($id)
     {
-        $this->nutricionist->destroy($id);
+        $this->nutricionist->erase($id);
 
         return ['message' => 'Deletado com sucesso'];
     }

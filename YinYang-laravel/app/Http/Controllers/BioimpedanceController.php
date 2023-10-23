@@ -48,7 +48,7 @@ class BioimpedanceController extends Controller
      */
     public function destroy($id)
     {
-        $this->bioimpedance->destroy($id);
+        $this->bioimpedance->erase($id);
 
         return ['message' => 'Deletado com sucesso'];
     }

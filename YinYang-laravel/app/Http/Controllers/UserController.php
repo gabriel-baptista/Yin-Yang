@@ -38,7 +38,7 @@ class UserController extends Controller
      {
          $this->user->edit($request->input(), $id);
          
-         return ['message' => 'Cadatrado com sucesso'];
+         return ['message' => 'Editado com sucesso'];
      }
  
      /**
@@ -49,7 +49,7 @@ class UserController extends Controller
       */
      public function destroy($id)
      {
-         $this->user->destroy($id);
+         $this->user->erase($id);
  
          return ['message' => 'Deletado com sucesso'];
      }

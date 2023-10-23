@@ -29,16 +29,16 @@ class Receip extends Model
 
     //Function update receips in BD
 
-    public function edit($receip, $id)
+    public function edit($infoEdit, $id)
     {
-        $infoEdit = Receip::find($id);
+        $receip = Receip::find($id);
 
-        if (!$infoEdit) {
+        if (!$receip) {
             return ["message" => "Receips not found!"];
         }
 
-        $infoEdit->fill($receip);
-        $infoEdit->save();
+        $receip->fill($infoEdit);
+        $receip->save();
 
         return ["message" => "Successfully altered anaminesia!"];
     }
@@ -47,13 +47,13 @@ class Receip extends Model
 
     public function erase($id)
     {
-        $infoErase = Receip::find($id);
+        $receip = Receip::find($id);
 
-        if (!$infoErase) {
+        if (!$receip) {
             return ["message" => "Receips not found!"];
         }
 
-        $infoErase->delete();
+        $receip->delete();
 
         return ["message" => "Receips successfully deleted!"];
     }
