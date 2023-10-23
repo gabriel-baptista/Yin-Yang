@@ -52,4 +52,5 @@ Route::delete('/receip/{id}', 'App\Http\Controllers\ReceipController@destroy');
 //User
 Route::post('/user/store', 'App\Http\Controllers\UserController@store');
 Route::put('/user/update/{id}', 'App\Http\Controllers\UserController@update');
+Route::put('/user/password/{id}', 'App\Http\Controllers\UserController@resetPassword');
 Route::delete('/user/destroy/{id}', 'App\Http\Controllers\UserController@destroy');

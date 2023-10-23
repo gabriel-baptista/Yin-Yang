@@ -25,17 +25,16 @@ class User extends Authenticatable
         'nivel_acesso',
     ];
 
-    protected $hidden = [
-        'password',
-    ];
-
     //Function create user in BD
 
     public function store($user)
     {
-        $user->password = Hash::make($user->password);
+        $user['password'] = Hash::make($user['password']);
+
         $this->fill($user);
+
         $this->save();
+
         return ["message" => "Anaminesia registered successfully!"];
     }
 
@@ -53,6 +52,21 @@ class User extends Authenticatable
         $user->save();
 
         return ["message" => "Successfully altered user!"];
+    }
+
+    public function resetPassword($password, $id){
+
+        $user = User::find($id);
+        
+        if (!$user) {
+            return ["message" => "User not found!"];
+        }
+
+        $user->password = Hash::make($password['password']);
+
+        $user->save();
+
+        return ["message" => "Successfully altered password!"];
     }
 
     //Function delete user in BD
