@@ -141,7 +141,7 @@ const Sidebar = () => {
             />
             <Item
               title="TESTE"
-              to="/line"
+              to="/user"
               icon={<LogoutOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
