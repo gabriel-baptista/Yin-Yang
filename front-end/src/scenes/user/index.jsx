@@ -16,6 +16,7 @@ import LineChart from "../../components/LineChart";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Form from "../form";
 import EditInfoUser from "../../components/EditInfoUser";
+import NumberBox from "../../components/NumberBox";
 
 const User = () => {
   const theme = useTheme();
@@ -25,7 +26,7 @@ const User = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box m="30px">
+    <Box m="30px" overflow="clip">
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="Nome usuario" />
 
@@ -82,6 +83,48 @@ const User = () => {
         gridAutoRows="180px"
         gap="20px"
       >
+        {/* linha 0 */}
+
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="130px"
+        >
+          <NumberBox title="Peso (kg)" number="89,3" />
+        </Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="130px"
+        >
+          <NumberBox title="IMC" number="10" />
+        </Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="130px"
+        >
+          <NumberBox title="Metabolismo Basal" number="10" />
+        </Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="130px"
+        >
+          <NumberBox title="Pontuação" number="73" />
+        </Box>
         {/* Linha 1 */}
         <Box
           gridColumn="span 6"
