@@ -486,3 +486,28 @@ export const mockLineData = [
     ],
   },
 ];
+
+export const mockWaterData = [
+  {
+    id: " ",
+    color: tokens("dark").greenAccent[500],
+    data: [
+      {
+        x: "01/03/2023",
+        y: 150.7,
+      },
+      {
+        x: "02/03/2023",
+        y: 147.3,
+      },
+      {
+        x: "03/03/2023",
+        y: 145,
+      },
+      {
+        x: "04/03/2023",
+        y: 130,
+      },
+    ],
+  },
+];

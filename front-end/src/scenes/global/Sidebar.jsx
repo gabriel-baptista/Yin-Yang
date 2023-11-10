@@ -39,6 +39,12 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
+        position: "sticky",
+        display: "flex",
+        height: "100vh",
+        top: 0,
+        bottom: 0,
+        zIndex: 10000,
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },
@@ -102,7 +108,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Teste
+              Menu
             </Typography>
             <Item
               title="Cadastrar"
@@ -141,7 +147,7 @@ const Sidebar = () => {
             />
             <Item
               title="TESTE"
-              to="/line"
+              to="/user"
               icon={<LogoutOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

@@ -11,6 +11,7 @@ import Form from "./scenes/form";
 import Calendario from "./scenes/calendar";
 import Line from "./scenes/line";
 import Login from "./scenes/login/login";
+import User from "./scenes/user";
 
 // rotas 
 function AuthenticatedRoutes(){
@@ -26,8 +27,9 @@ function AuthenticatedRoutes(){
               <Route path="/pacientes" element={<Pacients />} />
               <Route path="/formulario" element={<Form />} />
               <Route path="/calendario" element={<Calendario />} />
-              <Route path="/line" element={<Line />} />
+              <Route path="/user" element={<User />} />
               <Route path="/login" element={<Login />} />
+              {/* <Route path="/line" element={<Line />} /> */}
             </Routes>
           </main>
     </>
