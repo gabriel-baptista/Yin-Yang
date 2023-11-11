@@ -33,5 +33,5 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         rm: true
 #         strip_components: 3
-        source: "./"
+        source: "./front-end/"
         target: "C:/TG/teste/yin-yang"  
