@@ -34,4 +34,4 @@ jobs:
         rm: true
 #         strip_components: 3
         source: "./"
-        target: "C:\TG\teste\yin-yang"  
+        target: "C:/TG/teste/yin-yang"  
