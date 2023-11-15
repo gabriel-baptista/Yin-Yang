@@ -19,10 +19,14 @@ jobs:
         node-version: 18.13
 
     - name: Install dependencies
-      run: npm install
+      run: | 
+        cd Yin-Yang/front-end
+        npm install 
 
     - name: Build React app
-      run: npm run build
+      run: |
+        cd Yin-Yang/front-end
+        npm run build
 
     - name: Copy files to server
       uses: appleboy/scp-action@master
