@@ -17,6 +17,11 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Form from "../form";
 import EditInfoUser from "../../components/EditInfoUser";
 import NumberBox from "../../components/NumberBox";
+import PesoChart from "../../components/PesoChart";
+import Pesomuscularchart from "../../components/PesoMuscularChart";
+import GorduraKgChart from "../../components/GorduraKgChart";
+import GorduraChart from "../../components/GorduraChart";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const User = () => {
   const theme = useTheme();
@@ -28,7 +33,7 @@ const User = () => {
   return (
     <Box m="30px" overflow="clip">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Nome usuario" />
+        <Header title="Jon Snow" />
 
         {/* botao editar */}
         <Box>
@@ -43,10 +48,27 @@ const User = () => {
               fontSize: "14px",
               fontWeight: "bold",
               padding: "10px 20px",
+              mr: "15px"
             }}
           >
             <EditIcon sx={{ mr: "10px" }} />
             Editar
+          </Button>
+          <Button
+            onClick={handleOpen}
+            sx={{
+              backgroundColor: colors.redAccent[600],
+              color: colors.grey[100],
+              "&:hover": {
+                backgroundColor: colors.redAccent[700],
+              },
+              fontSize: "14px",
+              fontWeight: "bold",
+              padding: "10px 20px",
+            }}
+          >
+            <DeleteIcon sx={{ mr: "10px" }} />
+            Excluir
           </Button>
           <Modal
             open={open}
@@ -145,11 +167,11 @@ const User = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Água
+                Peso Muscular
               </Typography>
             </Box>
           </Box>
-          <WaterChart isDashboard={true} />
+          <Pesomuscularchart isDashboard={true} />
         </Box>
 
         <Box
@@ -171,7 +193,7 @@ const User = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Água
+                Peso da Água Corporal
               </Typography>
             </Box>
           </Box>
@@ -198,11 +220,11 @@ const User = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Água
+                Peso Corporal
               </Typography>
             </Box>
           </Box>
-          <WaterChart isDashboard={true} />
+          <PesoChart isDashboard={true} />
         </Box>
 
         {/* linha 3 */}
@@ -226,11 +248,11 @@ const User = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Água
+                Peso da Gordura Corporal
               </Typography>
             </Box>
           </Box>
-          <WaterChart isDashboard={true} />
+          <GorduraKgChart isDashboard={true} />
         </Box>
 
         <Box
@@ -252,11 +274,11 @@ const User = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Água
+                Percentual de Gordura Corporal
               </Typography>
             </Box>
           </Box>
-          <WaterChart isDashboard={true} />
+          <GorduraChart isDashboard={true} />
         </Box>
 
         {/* inicio grafico grande */}

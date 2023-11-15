@@ -9,8 +9,14 @@ const initialValues = {
   sobrenome: "",
   email: "",
   contato: "",
-  endereco1: "",
-  endereco2: "",
+  cidade: "",
+  idade: "",
+  sexo: "",
+  pesoInicial: "",
+  dataInicio: "",
+  medicamento: "",
+  exercicio: "",
+  observacao: "",
 };
 
 // mascara para numero de celular
@@ -25,8 +31,14 @@ const userSchema = yup.object().shape({
     .string()
     .matches(phoneRegex, "Número de celular inválido")
     .required("Campo necessário"),
-  endereco1: yup.string().required("Campo necessário"),
-  endereco2: yup.string().required("Campo necessário"),
+  cidade: yup.string().required("Campo necessário"),
+  idade: yup.string().required("Campo necessário"),
+  sexo: yup.string().required("Campo necessário"),
+  pesoInicial: yup.string().required("Campo necessário"),
+  dataInicio: yup.string().required("Campo necessário"),
+  medicamento: yup.string().required("Campo necessário"),
+  exercicio: yup.string().required("Campo necessário"),
+  observacao: yup.string(),
 });
 
 const Form = () => {
@@ -90,6 +102,7 @@ const Form = () => {
                 helperText={touched.sobrenome && errors.sobrenome}
                 sx={{ gridColumn: "span 2" }}
               />
+              
               <TextField
                 fullWidth
                 variant="filled"
@@ -101,7 +114,7 @@ const Form = () => {
                 name="email"
                 error={!!touched.email && !!errors.email}
                 helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
@@ -114,17 +127,17 @@ const Form = () => {
                 name="contato"
                 error={!!touched.contato && !!errors.contato}
                 helperText={touched.contato && errors.contato}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Endereço 1"
+                label="Cidade"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.endereco1}
-                name="endereco1"
+                name="cidade"
                 error={!!touched.endereco1 && !!errors.endereco1}
                 helperText={touched.endereco1 && errors.endereco1}
                 sx={{ gridColumn: "span 2" }}
@@ -133,14 +146,108 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Endereço 2"
+                label="Endereço"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.endereco2}
-                name="endereco2"
+                name="endereco"
                 error={!!touched.endereco2 && !!errors.endereco2}
                 helperText={touched.endereco2 && errors.endereco2}
                 sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Idade"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.idade}
+                name="idade"
+                error={!!touched.idade && !!errors.idade}
+                helperText={touched.idade && errors.idade}
+                sx={{ gridColumn: "span 1" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                // select
+                label="Sexo"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.sexo}
+                name="sexo"
+                error={!!touched.sexo && !!errors.sexo}
+                helperText={touched.sexo && errors.sexo}
+                sx={{ gridColumn: "span 1" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Peso Inicial"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.pesoInicial}
+                name="pesoInicial"
+                error={!!touched.pesoInicial && !!errors.pesoInicial}
+                helperText={touched.pesoInicial && errors.pesoInicial}
+                sx={{ gridColumn: "span 1" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="Date"
+                label="Data"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.dataInicio}
+                name="dataInicio"
+                error={!!touched.dataInicio && !!errors.dataInicio}
+                helperText={touched.dataInicio && errors.dataInicio}
+                sx={{ gridColumn: "span 1" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Usa medicamentos?"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.medicamento}
+                name="medicamento"
+                error={!!touched.medicamento && !!errors.medicamento}
+                helperText={touched.medicamento && errors.medicamento}
+                sx={{ gridColumn: "span 2" }}
+                multiline minRows={3}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Faz Exercicios?"
+                multiline minRows={3}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.exercicio}
+                name="exercicio"
+                error={!!touched.exercicio && !!errors.exercicio}
+                helperText={touched.exercicio && errors.exercicio}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Observação"
+                multiline minRows={5}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.observacao}
+                name="observacao"
+                error={!!touched.observacao && !!errors.observacao}
+                helperText={touched.observacao && errors.observacao}
+                sx={{ gridColumn: "span 4" }}
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">

@@ -145,13 +145,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="TESTE"
-              to="/user"
-              icon={<LogoutOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            
           </Box>
         </Menu>
       </ProSidebar>

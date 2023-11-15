@@ -1,5 +1,5 @@
 // renomear arquivo depois
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme, Button, IconButton } from "@mui/material";
 import { DataGrid, GridToolbar, ptBR } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataPatients } from "../../data/mockData"; // retirar depois
@@ -8,10 +8,20 @@ import { mockDataPatients } from "../../data/mockData"; // retirar depois
 // import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Header from "../../components/Header";
+import EditIcon from "@mui/icons-material/Edit";
+import User from "../user";
+import { useNavigate  } from "react-router-dom";
 
 const Patients = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  let navigate = useNavigate(); 
+
+  const routeChange = () =>{ 
+    let path = `/user`; 
+    navigate(path);
+  }
 
   const columns = [
     { field: "id", headerName: "ID" },
@@ -38,27 +48,43 @@ const Patients = () => {
       renderCell: ({ row: { access } }) => {
         return (
           <Box
-            width="60%"
+            width="100%"
             m="0 auto"
             p="5px"
             display="flex"
             justifyContent="center"
-            backgroundColor={
-              access === "admin"
-                ? colors.greenAccent[600]
-                : colors.greenAccent[600]
-            }
-            borderRadius="4px"
+            // backgroundColor={
+            //   access === "admin"
+            //     ? colors.greenAccent[600]
+            //     : colors.greenAccent[600]
+            // }
+            // borderRadius="4px"
           >
             {/* {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
             {access === "manager" && <SecurityOutlinedIcon />}
             {access === "user" && <LockOpenOutlinedIcon />} */}
-            {access === "admin" && <EditOutlinedIcon />}
+            {/* {access === "admin" && <EditOutlinedIcon />}
             {access === "manager" && <EditOutlinedIcon />}
-            {access === "user" && <EditOutlinedIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
+            {access === "user" && <EditOutlinedIcon />} */}
+            {/* <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
               {"Editar"}
-            </Typography>
+            </Typography> */}
+              <Button
+            onClick={routeChange}
+            sx={{
+              backgroundColor: colors.greenAccent[600],
+              color: colors.grey[100],
+              "&:hover": {
+                backgroundColor: colors.greenAccent[700],
+              },
+              fontSize: "12px",
+              fontWeight: "bold",
+              borderRadius: "8px",
+            }}
+          >
+            <EditIcon sx={{ mr: "10px" }} />
+            Editar
+          </Button>
           </Box>
         );
       },
