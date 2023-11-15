@@ -28,6 +28,10 @@ jobs:
         cd Yin-Yang/front-end
         npm run build
 
+    - name: Display directory contents
+      run: |
+        dir
+
     - name: Copy files to server
       uses: appleboy/scp-action@master
       with:
