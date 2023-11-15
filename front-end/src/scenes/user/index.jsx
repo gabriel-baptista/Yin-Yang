@@ -21,6 +21,7 @@ import PesoChart from "../../components/PesoChart";
 import Pesomuscularchart from "../../components/PesoMuscularChart";
 import GorduraKgChart from "../../components/GorduraKgChart";
 import GorduraChart from "../../components/GorduraChart";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const User = () => {
   const theme = useTheme();
@@ -47,10 +48,27 @@ const User = () => {
               fontSize: "14px",
               fontWeight: "bold",
               padding: "10px 20px",
+              mr: "15px"
             }}
           >
             <EditIcon sx={{ mr: "10px" }} />
             Editar
+          </Button>
+          <Button
+            onClick={handleOpen}
+            sx={{
+              backgroundColor: colors.redAccent[600],
+              color: colors.grey[100],
+              "&:hover": {
+                backgroundColor: colors.redAccent[700],
+              },
+              fontSize: "14px",
+              fontWeight: "bold",
+              padding: "10px 20px",
+            }}
+          >
+            <DeleteIcon sx={{ mr: "10px" }} />
+            Excluir
           </Button>
           <Modal
             open={open}
