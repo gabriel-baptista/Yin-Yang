@@ -55,7 +55,7 @@ const User = () => {
             Editar
           </Button>
           <Button
-            onClick={handleOpen}
+            // onClick={handleOpen}
             sx={{
               backgroundColor: colors.redAccent[600],
               color: colors.grey[100],
