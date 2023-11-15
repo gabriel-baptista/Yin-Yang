@@ -9,8 +9,14 @@ const initialValues = {
   sobrenome: "",
   email: "",
   contato: "",
-  endereco1: "",
-  endereco2: "",
+  cidade: "",
+  idade: "",
+  sexo: "",
+  pesoInicial: "",
+  dataInicio: "",
+  medicamento: "",
+  exercicio: "",
+  observacao: "",
 };
 
 // mascara para numero de celular
@@ -25,8 +31,14 @@ const userSchema = yup.object().shape({
     .string()
     .matches(phoneRegex, "Número de celular inválido")
     .required("Campo necessário"),
-  endereco1: yup.string().required("Campo necessário"),
-  endereco2: yup.string().required("Campo necessário"),
+  cidade: yup.string().required("Campo necessário"),
+  idade: yup.string().required("Campo necessário"),
+  sexo: yup.string().required("Campo necessário"),
+  pesoInicial: yup.string().required("Campo necessário"),
+  dataInicio: yup.string().required("Campo necessário"),
+  medicamento: yup.string().required("Campo necessário"),
+  exercicio: yup.string().required("Campo necessário"),
+  observacao: yup.string(),
 });
 
 const Form = () => {
@@ -150,23 +162,23 @@ const Form = () => {
                 label="Idade"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.nome}
+                value={values.idade}
                 name="idade"
-                error={!!touched.nome && !!errors.nome}
-                helperText={touched.nome && errors.nome}
+                error={!!touched.idade && !!errors.idade}
+                helperText={touched.idade && errors.idade}
                 sx={{ gridColumn: "span 1" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
-                select
+                // select
                 label="Sexo"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.nome}
+                value={values.sexo}
                 name="sexo"
-                error={!!touched.nome && !!errors.nome}
-                helperText={touched.nome && errors.nome}
+                error={!!touched.sexo && !!errors.sexo}
+                helperText={touched.sexo && errors.sexo}
                 sx={{ gridColumn: "span 1" }}
               />
               <TextField
@@ -176,10 +188,10 @@ const Form = () => {
                 label="Peso Inicial"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.nome}
-                name="PesoInicial"
-                error={!!touched.nome && !!errors.nome}
-                helperText={touched.nome && errors.nome}
+                value={values.pesoInicial}
+                name="pesoInicial"
+                error={!!touched.pesoInicial && !!errors.pesoInicial}
+                helperText={touched.pesoInicial && errors.pesoInicial}
                 sx={{ gridColumn: "span 1" }}
               />
               <TextField
@@ -189,10 +201,10 @@ const Form = () => {
                 label="Data"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.nome}
+                value={values.dataInicio}
                 name="dataInicio"
-                error={!!touched.nome && !!errors.nome}
-                helperText={touched.nome && errors.nome}
+                error={!!touched.dataInicio && !!errors.dataInicio}
+                helperText={touched.dataInicio && errors.dataInicio}
                 sx={{ gridColumn: "span 1" }}
               />
               <TextField
@@ -202,10 +214,10 @@ const Form = () => {
                 label="Usa medicamentos?"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.nome}
-                name="dataInicio"
-                error={!!touched.nome && !!errors.nome}
-                helperText={touched.nome && errors.nome}
+                value={values.medicamento}
+                name="medicamento"
+                error={!!touched.medicamento && !!errors.medicamento}
+                helperText={touched.medicamento && errors.medicamento}
                 sx={{ gridColumn: "span 2" }}
                 multiline minRows={3}
               />
@@ -217,10 +229,10 @@ const Form = () => {
                 multiline minRows={3}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.nome}
-                name="dataInicio"
-                error={!!touched.nome && !!errors.nome}
-                helperText={touched.nome && errors.nome}
+                value={values.exercicio}
+                name="exercicio"
+                error={!!touched.exercicio && !!errors.exercicio}
+                helperText={touched.exercicio && errors.exercicio}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
@@ -231,10 +243,10 @@ const Form = () => {
                 multiline minRows={5}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.nome}
-                name="dataInicio"
-                error={!!touched.nome && !!errors.nome}
-                helperText={touched.nome && errors.nome}
+                value={values.observacao}
+                name="observacao"
+                error={!!touched.observacao && !!errors.observacao}
+                helperText={touched.observacao && errors.observacao}
                 sx={{ gridColumn: "span 4" }}
               />
             </Box>
