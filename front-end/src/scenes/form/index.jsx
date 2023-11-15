@@ -90,6 +90,7 @@ const Form = () => {
                 helperText={touched.sobrenome && errors.sobrenome}
                 sx={{ gridColumn: "span 2" }}
               />
+              
               <TextField
                 fullWidth
                 variant="filled"
@@ -101,7 +102,7 @@ const Form = () => {
                 name="email"
                 error={!!touched.email && !!errors.email}
                 helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
@@ -114,17 +115,17 @@ const Form = () => {
                 name="contato"
                 error={!!touched.contato && !!errors.contato}
                 helperText={touched.contato && errors.contato}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Endereço 1"
+                label="Cidade"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.endereco1}
-                name="endereco1"
+                name="cidade"
                 error={!!touched.endereco1 && !!errors.endereco1}
                 helperText={touched.endereco1 && errors.endereco1}
                 sx={{ gridColumn: "span 2" }}
@@ -133,14 +134,108 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Endereço 2"
+                label="Endereço"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.endereco2}
-                name="endereco2"
+                name="endereco"
                 error={!!touched.endereco2 && !!errors.endereco2}
                 helperText={touched.endereco2 && errors.endereco2}
                 sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Idade"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.nome}
+                name="idade"
+                error={!!touched.nome && !!errors.nome}
+                helperText={touched.nome && errors.nome}
+                sx={{ gridColumn: "span 1" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                select
+                label="Sexo"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.nome}
+                name="sexo"
+                error={!!touched.nome && !!errors.nome}
+                helperText={touched.nome && errors.nome}
+                sx={{ gridColumn: "span 1" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Peso Inicial"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.nome}
+                name="PesoInicial"
+                error={!!touched.nome && !!errors.nome}
+                helperText={touched.nome && errors.nome}
+                sx={{ gridColumn: "span 1" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="Date"
+                label="Data"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.nome}
+                name="dataInicio"
+                error={!!touched.nome && !!errors.nome}
+                helperText={touched.nome && errors.nome}
+                sx={{ gridColumn: "span 1" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Usa medicamentos?"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.nome}
+                name="dataInicio"
+                error={!!touched.nome && !!errors.nome}
+                helperText={touched.nome && errors.nome}
+                sx={{ gridColumn: "span 2" }}
+                multiline minRows={3}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Faz Exercicios?"
+                multiline minRows={3}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.nome}
+                name="dataInicio"
+                error={!!touched.nome && !!errors.nome}
+                helperText={touched.nome && errors.nome}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Observação"
+                multiline minRows={5}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.nome}
+                name="dataInicio"
+                error={!!touched.nome && !!errors.nome}
+                helperText={touched.nome && errors.nome}
+                sx={{ gridColumn: "span 4" }}
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
