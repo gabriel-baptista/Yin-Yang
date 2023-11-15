@@ -1,37 +1,37 @@
-name: "Deploy on server"
+name: Deploy to Windows Server
 
-on: 
+on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   deploy:
-
-    runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm i
-    - run: npm run build
-      
-    - name: Deploy hosting on Linux server
+        node-version: 18.13
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build React app
+      run: npm run build
+
+    - name: Copy files to server
       uses: appleboy/scp-action@master
       with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        port: ${{ secrets.SSH_PORT }}
-        rm: true
-#         strip_components: 3
-        source: "./front-end/"
-        target: "C:/TG/teste/yin-yang"  
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        source: "front-end/build/"  # ou o caminho do seu build
+        target: "C:/TG/Yin-Yang/front-end/build"  # o caminho no seu servidor
+
+    - name: Restart IIS
+      run: iisreset /restart
