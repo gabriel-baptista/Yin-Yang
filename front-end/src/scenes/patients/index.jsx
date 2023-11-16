@@ -1,15 +1,15 @@
 // renomear arquivo depois
-import { Box, Typography, useTheme, Button, IconButton } from "@mui/material";
+import { Box, useTheme, Button  } from "@mui/material";
 import { DataGrid, GridToolbar, ptBR } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataPatients } from "../../data/mockData"; // retirar depois
 // import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 // import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 // import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+// import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Header from "../../components/Header";
 import EditIcon from "@mui/icons-material/Edit";
-import User from "../user";
+// import User from "../user";
 import { useNavigate  } from "react-router-dom";
 
 const Patients = () => {
