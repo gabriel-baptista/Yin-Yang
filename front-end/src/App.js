@@ -9,13 +9,14 @@ import Dashboard from "./scenes/dashboard";
 import Pacients from "./scenes/patients";
 import Form from "./scenes/form";
 import Calendario from "./scenes/calendar";
-import Line from "./scenes/line";
+// import Line from "./scenes/line";
 import Login from "./scenes/login/login";
 import User from "./scenes/user";
 
 // rotas 
 function AuthenticatedRoutes(){
-  const [isSidebar, setIsSidebar] = useState(true);
+  const [isSidebar] = useState(true);
+  // const [isSidebar, setIsSidebar] = useState(true);
 
   return (
     <>
@@ -38,7 +39,8 @@ function AuthenticatedRoutes(){
 
 const App = () => {
   const [theme, colorMode] = useMode();
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated] = useState(true);
+  // const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   return (
     <ColorModeContext.Provider value={colorMode}>

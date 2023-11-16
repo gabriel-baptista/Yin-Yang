@@ -1,7 +1,7 @@
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
-import { mockTransactions } from "../../data/mockData"; // retirar e colocar dados reais
+// import { mockTransactions } from "../../data/mockData"; // retirar e colocar dados reais
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LineChart from "../../components/LineChart";
 import StatisticBox from "../../components/StatisticBox";

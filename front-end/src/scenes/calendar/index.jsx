@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Calendar, formatDate } from "@fullcalendar/core";
+import { formatDate } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -94,11 +94,11 @@ const Calendario = () => {
             locale="pt-BR"
             timeZone="America/Bahia"
             buttonText={{
-              today: 'Hoje',
-              month: 'Mês',
-              week: 'Semana',
-              day: 'Hoje',
-              list: 'Lista'
+              today: "Hoje",
+              month: "Mês",
+              week: "Semana",
+              day: "Hoje",
+              list: "Lista",
             }}
             plugins={[
               dayGridPlugin,
