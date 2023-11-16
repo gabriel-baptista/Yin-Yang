@@ -33,7 +33,6 @@ jobs:
 
     - name: Build React app
       run: |
-        cd front-end
         npm run build
 
     - name: Copy files to server
