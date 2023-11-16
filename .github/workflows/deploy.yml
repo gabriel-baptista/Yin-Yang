@@ -50,8 +50,8 @@ jobs:
         $winscpScriptPath = "winscp-script.txt"
         $winscpScript | Out-File $winscpScriptPath -Encoding utf8
 
-        # Run WinSCP with the script
-        winscp.com /script=$winscpScriptPath
+        # Run WinSCP with the script and specify the host key
+        winscp.com /script=$winscpScriptPath /hostkey="ssh-ed25519 255 VsOb5Yuczv/PW8BuJyc/QPiz69zPQfhvnFUSczyteEc"
 
     - name: Restart IIS
       run: iisreset /restart
