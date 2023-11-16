@@ -20,7 +20,7 @@ jobs:
         
     - name: mudar diretorio
       run: | 
-        cd Yin-Yang/front-end
+        cd front-end
         
     - name: Display directory contents
       run: |
