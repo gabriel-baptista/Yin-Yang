@@ -38,8 +38,11 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
-        source: "front-end/build/"  # ou o caminho do seu build
-        target: "C:/TG/teste/"  # o caminho no seu servidor
+        script: |
+          cd C:/TG/teste/
+          rm -rf *  
+          scp -r ../../Yin-Yang/front-end/build/* . 
+
 
     - name: Restart IIS
       run: iisreset /restart
