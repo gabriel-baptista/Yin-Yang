@@ -33,16 +33,25 @@ jobs:
         dir
 
     - name: Copy files to server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        script: |
-          cd C:/TG/teste/
-          rm -rf *  
-          scp -r ../../Yin-Yang/front-end/build/* . 
+      run: |
+        # Install WinSCP
+        choco install winscp -y
 
+        # Define the WinSCP script content
+        $winscpScript = @"
+        open sftp://${{ secrets.SSH_USERNAME }}:${{ secrets.SSH_PASSWORD }}@${{ secrets.SSH_HOST }}
+        lcd Yin-Yang/front-end/build
+        cd C:/TG/teste/
+        synchronize local .
+        exit
+        "@
+
+        # Save the script to a file
+        $winscpScriptPath = "winscp-script.txt"
+        $winscpScript | Out-File $winscpScriptPath -Encoding utf8
+
+        # Run WinSCP with the script
+        winscp.com /script=$winscpScriptPath
 
     - name: Restart IIS
       run: iisreset /restart
