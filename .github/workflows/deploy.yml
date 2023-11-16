@@ -39,10 +39,10 @@ jobs:
 
         # Define the WinSCP script content
         $winscpScript = @"
-        open sftp://${{ secrets.SSH_USERNAME }}:${{ secrets.SSH_PASSWORD }}@${{ secrets.SSH_HOST }}
+        open sftp://${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}
         lcd Yin-Yang/front-end/build
         cd C:/TG/teste/
-        synchronize local .
+        put *.*
         exit
         "@
 
@@ -50,8 +50,8 @@ jobs:
         $winscpScriptPath = "winscp-script.txt"
         $winscpScript | Out-File $winscpScriptPath -Encoding utf8
 
-        # Run WinSCP with the script and specify the host key
-        winscp.com /script=$winscpScriptPath /hostkey="ssh-ed25519 255 VsOb5Yuczv/PW8BuJyc/QPiz69zPQfhvnFUSczyteEc"
+        # Run WinSCP with the script and specify the private key
+        winscp.com /script=$winscpScriptPath /privatekey="${{ secrets.SSH_PRIVATE_KEY }}"
 
     - name: Restart IIS
       run: iisreset /restart
