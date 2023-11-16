@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   Box,
   Button,
-  IconButton,
   Typography,
   useTheme,
   Modal,
@@ -11,10 +10,7 @@ import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import EditIcon from "@mui/icons-material/Edit";
 import WaterChart from "../../components/WaterChart";
-import { mockTransactions } from "../../data/mockData"; // retirar e colocar dados reais
-import LineChart from "../../components/LineChart";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import Form from "../form";
+
 import EditInfoUser from "../../components/EditInfoUser";
 import NumberBox from "../../components/NumberBox";
 import PesoChart from "../../components/PesoChart";
