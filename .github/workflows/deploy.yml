@@ -28,12 +28,12 @@ jobs:
         
     - name: Install dependencies
       run: | 
-        cd Yin-Yang/front-end
+        cd front-end
         npm install 
 
     - name: Build React app
       run: |
-        cd Yin-Yang/front-end
+        cd front-end
         npm run build
 
     - name: Copy files to server
