@@ -12,6 +12,7 @@ import Calendario from "./scenes/calendar";
 // import Line from "./scenes/line";
 import Login from "./scenes/login/login";
 import User from "./scenes/user";
+import Recipe from "./scenes/recipe";
 
 // rotas 
 function AuthenticatedRoutes(){
@@ -30,6 +31,7 @@ function AuthenticatedRoutes(){
               <Route path="/calendario" element={<Calendario />} />
               <Route path="/user" element={<User />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/recipes" element={<Recipe />} />
               {/* <Route path="/line" element={<Line />} /> */}
             </Routes>
           </main>

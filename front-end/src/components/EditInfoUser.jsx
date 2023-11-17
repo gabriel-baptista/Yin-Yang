@@ -96,8 +96,8 @@ const EditInfoUser = () => {
                 onChange={handleChange}
                 value={values.pesoCorporal}
                 name="pesoCorporal"
-                error={!!touched.gorduraPercentual && !!errors.gorduraPercentual}
-                helperText={touched.gorduraPercentual && errors.gorduraPercentual}
+                error={!!touched.pesoCorporal && !!errors.pesoCorporal}
+                helperText={touched.pesoCorporal && errors.pesoCorporal}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
