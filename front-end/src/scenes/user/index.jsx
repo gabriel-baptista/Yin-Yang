@@ -10,7 +10,6 @@ import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import EditIcon from "@mui/icons-material/Edit";
 import WaterChart from "../../components/WaterChart";
-
 import EditInfoUser from "../../components/EditInfoUser";
 import NumberBox from "../../components/NumberBox";
 import PesoChart from "../../components/PesoChart";
