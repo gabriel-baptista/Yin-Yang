@@ -3,9 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -54,21 +57,6 @@ class User extends Authenticatable
         return ["message" => "Successfully altered user!"];
     }
 
-    public function resetPassword($password, $id){
-
-        $user = User::find($id);
-        
-        if (!$user) {
-            return ["message" => "User not found!"];
-        }
-
-        $user->password = Hash::make($password['password']);
-
-        $user->save();
-
-        return ["message" => "Successfully altered password!"];
-    }
-
     //Function delete user in BD
 
     public function erase($id)
@@ -83,4 +71,50 @@ class User extends Authenticatable
 
         return ["message" => "User successfully deleted!"];
     }
+
+    //Funcition verifies the credentials of the user
+
+    public function login($credentials)
+    {
+        if (Auth::attempt($credentials)) {
+            $activeUser = User::where('login', $credentials['login'])->get(['ativo', 'id']);
+
+            if ($activeUser[0]->ativo == 1) {
+                return redirect()->route('session', $activeUser['id']);
+            } else {
+                return ['message' => 'Inactive User'];
+            }
+        } else {
+            return ['message' => 'Incorrect login or password'];
+        }
+    }
+
+    //Funcition reset password for a user
+
+    public function resetPassword($password, $id)
+    {
+
+        $nutricionistId = Nutricionist::where('id', $id)->get('id_user');
+
+        $user = User::find($nutricionistId[0]->id_user);
+
+        if (!$user) {
+            return ["message" => "User not found!"];
+        }
+
+        $user->password = Hash::make($password['password']);
+
+        $user->save();
+
+        return ["message" => "Successfully altered password!"];
+    }
+
+    //Function logged out the user and cleared the session
+
+    public function logout(){
+        Auth::logout();
+        session()->flush();
+        return ['message' => 'User logged out successfully.'];
+    }
+    
 }

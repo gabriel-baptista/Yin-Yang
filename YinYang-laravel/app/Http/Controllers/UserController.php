@@ -41,13 +41,6 @@ class UserController extends Controller
         return ['message' => 'Editado com sucesso'];
     }
 
-    public function resetPassword(Request $request, $id)
-    {
-        $this->user->resetPassword($request->input(), $id);
-
-        return ['message' => 'Senha alterada com sucesso'];
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -59,5 +52,26 @@ class UserController extends Controller
         $this->user->erase($id);
 
         return ['message' => 'Deletado com sucesso'];
+    }
+
+    public function login($credentials)
+    {
+        $this->user->login($credentials);
+
+        return ['message' => 'Usuário logado com sucesso'];
+    }
+
+    public function resetPassword(Request $request, $id)
+    {
+        $this->user->resetPassword($request->input(), $id);
+
+        return ['message' => 'Senha alterada com sucesso'];
+    }
+
+    public function logout()
+    {
+        $this->user->logout();
+
+        return ['message' => 'Usuário deslogado com sucesso'];
     }
 }
