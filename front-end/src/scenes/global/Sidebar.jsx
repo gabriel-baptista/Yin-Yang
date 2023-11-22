@@ -140,7 +140,7 @@ const Sidebar = () => {
             />
             <Item
               title="Sair"
-              to="/logoff"
+              to="/"
               icon={<LogoutOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
