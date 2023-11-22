@@ -15,12 +15,16 @@ class patient extends Model
     protected $fillable = [
         'id_nutricionist',
         'nome',
-        'login',
-        'password',
         'email',
-        'celular',
+        'contato',
         'ativo',
-        'nivel_acesso',
+        'cidade',
+        'idade',
+        'sexo',
+        'pesoInicial',
+        'usoMedicamento',
+        'exercicios',
+        'observacao'
     ];
 
     //Function create patients in BD

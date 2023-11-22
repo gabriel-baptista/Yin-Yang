@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id')->unique();
             $table->unsignedInteger('id_patient');
             $table->unsignedInteger('id_nutricionist');
-            $table->integer('status');
+            $table->integer('estado');
             $table->timestamps();
             
             $table->foreign('id_patient')->references('id')->on('patients');

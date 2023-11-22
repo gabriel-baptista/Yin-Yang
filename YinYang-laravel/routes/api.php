@@ -19,11 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Anamese
-Route::post('/anamnese', 'App\Http\Controllers\AnamnesisController@store');
-Route::put('/anamnese/{id}', 'App\Http\Controllers\AnamnesisController@update');
-Route::delete('/anamnese/{id}', 'App\Http\Controllers\AnamnesisController@destroy');
-
 //Appointment
 Route::post('/appointment', 'App\Http\Controllers\AppointmentController@store');
 Route::put('/appointment/{id}', 'App\Http\Controllers\AppointmentController@update');
