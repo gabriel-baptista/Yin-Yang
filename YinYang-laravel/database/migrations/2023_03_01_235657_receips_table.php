@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('receips', function (Blueprint $table) {
             $table->increments('id')->unique();
             $table->unsignedInteger('id_nutricionist');
+            $table->string('nome', 45);
             $table->longText('ingredientes');
             $table->longText('modo_preparo');
             $table->timestamps();

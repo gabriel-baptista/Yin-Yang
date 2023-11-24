@@ -15,15 +15,14 @@ class Bioimpedance extends Model
     protected $fillable = [
         'id_appointment',
         'peso_consulta',
-        'musculo_esqueletico',
+        'peso_muscular',
         'massa_magra',
-        'gordura_corporal',
-        'massa_gorda',
+        'percentual_gordura',
         'agua_consulta',
-        'circunferencia_cintura',
         'imc',
-        'tmb',
+        'basal',
         'pontuacao',
+        'data_consulta',
     ];
 
     //Function create bioimpedance in BD

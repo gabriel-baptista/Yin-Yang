@@ -14,6 +14,7 @@ class Receip extends Model
 
     protected $fillable = [
         'id_nutricionist',
+        'nome',
         'ingredientes',
         'modo_preparo',
     ];
