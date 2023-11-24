@@ -13,7 +13,7 @@ import { ThemeProvider, useTheme } from "@mui/material/styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { tokens } from "../../theme";
 import Dashboard from "../dashboard";
-import { Route } from "react-router-dom";
+import { Route, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const theme = useTheme();
@@ -23,11 +23,16 @@ const Login = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
-
+  let navigate = useNavigate(); 
 
   const handleLogin = (e) => {
     <Route path="/dashboard" element={<Dashboard />} />
   };
+
+  const routeChange = () =>{ 
+    let path = `/dashboard`; 
+    navigate(path);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -102,7 +107,7 @@ const Login = () => {
               sx={{ mt: 2, mb: 2 }}
               style={{ backgroundColor: colors.greenAccent[600] }}
               type="submit"
-              onClick={handleLogin}
+              onClick={routeChange}
             >
               Entrar
             </Button>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id')->unique();
             $table->string('login', 100)->unique();
             $table->string('password', 100);
-            $table->char('ativo', 1);
+            $table->integer('ativo', 1);
             $table->integer('nivel_acesso');
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ class Appointment extends Model
     protected $fillable = [
         'id_patient',
         'id_nutricionist',
-        'status',
+        'estado',
     ];
 
     //Function create appointment in BD

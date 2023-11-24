@@ -17,12 +17,18 @@ return new class extends Migration
             $table->increments('id')->unique();
             $table->unsignedInteger('id_nutricionist');
             $table->string('nome', 100);
-            $table->string('login', 100)->unique();
-            $table->string('password', 100);
+            $table->string('sobrenome', 100);
             $table->string('email', 100);
-            $table->string('celular', 13);
-            $table->char('ativo', 1);
-            $table->integer('nivel_acesso');
+            $table->string('contato', 13);
+            $table->integer('ativo', 1);
+            $table->string('cidade', 50);
+            $table->string('endereco', 150);
+            $table->integer('idade');
+            $table->char('sexo', 1);
+            $table->decimal('pesoInicial', 1);
+            $table->string('usoMedicamento', 100);
+            $table->string('exercicios', 100);
+            $table->string('observacao', 200);
             $table->timestamps();
 
             $table->foreign('id_nutricionist')->references('id')->on('nutricionist');
@@ -35,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patients');        
+        Schema::dropIfExists('patients');
     }
 };
