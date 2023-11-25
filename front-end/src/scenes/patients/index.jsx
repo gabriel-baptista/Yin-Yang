@@ -1,8 +1,10 @@
+
+import { useState, useEffect } from "react";
 // renomear arquivo depois
 import { Box, useTheme, Button  } from "@mui/material";
 import { DataGrid, GridToolbar, ptBR } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataPatients } from "../../data/mockData"; // retirar depois
+import { mockDataPatients } from "../../data/mockData";
 // import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 // import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 // import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
@@ -15,8 +17,13 @@ import { useNavigate  } from "react-router-dom";
 const Patients = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [tableData, setTableData] = useState([]);
 
   let navigate = useNavigate(); 
+
+  useEffect(() => { 
+
+  }, []);
 
   const routeChange = () =>{ 
     let path = `/user`; 

@@ -4,23 +4,26 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 
+import patientHook from "../../api/hooks/patient";
+
 const initialValues = {
   nome: "",
   sobrenome: "",
   email: "",
   contato: "",
   cidade: "",
+  endereco: "",
   idade: "",
   sexo: "",
   pesoInicial: "",
   dataInicio: "",
-  medicamento: "",
-  exercicio: "",
+  usoMedicamento: "",
+  exercicios: "",
   observacao: "",
 };
 
 // mascara para numero de celular
-const phoneRegex = /(\d{2})(\d{2})(\d{1})(\d{4})(\d{4})/;
+const phoneRegex = /^\(?([1-9]{2})\)?([ .-]?)?([9]{1})?([0-9]{4})\2([0-9]{4})$/;
 
 // validação para cada campo do formulario
 const userSchema = yup.object().shape({
@@ -32,12 +35,13 @@ const userSchema = yup.object().shape({
     .matches(phoneRegex, "Número de celular inválido")
     .required("Campo necessário"),
   cidade: yup.string().required("Campo necessário"),
+  endereco: yup.string().required("Campo necessário"),
   idade: yup.string().required("Campo necessário"),
   sexo: yup.string().required("Campo necessário"),
   pesoInicial: yup.string().required("Campo necessário"),
   dataInicio: yup.string().required("Campo necessário"),
-  medicamento: yup.string().required("Campo necessário"),
-  exercicio: yup.string().required("Campo necessário"),
+  usoMedicamento: yup.string().required("Campo necessário"),
+  exercicios: yup.string().required("Campo necessário"),
   observacao: yup.string(),
 });
 
@@ -45,9 +49,15 @@ const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const handleFormSubmit = (values) => {
-    // aqui vai enviar os dados
-    console.log(values);
-    console.log("dados enviados");
+    values.pesoInicial = parseFloat(values.pesoInicial);
+
+    patientHook.set(values)
+      .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   };
 
   return (
@@ -136,10 +146,10 @@ const Form = () => {
                 label="Cidade"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.endereco1}
+                value={values.cidade}
                 name="cidade"
-                error={!!touched.endereco1 && !!errors.endereco1}
-                helperText={touched.endereco1 && errors.endereco1}
+                error={!!touched.cidade && !!errors.cidade}
+                helperText={touched.cidade && errors.cidade}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
@@ -149,10 +159,10 @@ const Form = () => {
                 label="Endereço"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.endereco2}
+                value={values.endereco}
                 name="endereco"
-                error={!!touched.endereco2 && !!errors.endereco2}
-                helperText={touched.endereco2 && errors.endereco2}
+                error={!!touched.endereco && !!errors.endereco}
+                helperText={touched.endereco && errors.endereco}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
@@ -214,10 +224,10 @@ const Form = () => {
                 label="Usa medicamentos?"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.medicamento}
+                value={values.usoMedicamento}
                 name="medicamento"
-                error={!!touched.medicamento && !!errors.medicamento}
-                helperText={touched.medicamento && errors.medicamento}
+                error={!!touched.usoMedicamento && !!errors.usoMedicamento}
+                helperText={touched.usoMedicamento && errors.usoMedicamento}
                 sx={{ gridColumn: "span 2" }}
                 multiline minRows={3}
               />
@@ -229,10 +239,10 @@ const Form = () => {
                 multiline minRows={3}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.exercicio}
+                value={values.exercicios}
                 name="exercicio"
-                error={!!touched.exercicio && !!errors.exercicio}
-                helperText={touched.exercicio && errors.exercicio}
+                error={!!touched.exercicios && !!errors.exercicios}
+                helperText={touched.exercicios && errors.exercicios}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField

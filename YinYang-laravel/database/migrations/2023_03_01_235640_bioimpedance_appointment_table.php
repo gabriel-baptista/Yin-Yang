@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('bioimpedence_appointment', function (Blueprint $table) {
             $table->increments('id')->unique();
             $table->unsignedInteger('id_appointment');
-            $table->decimal('peso_consulta', 3, 2);
-            $table->decimal('peso_muscular', 3, 2);
-            $table->decimal('massa_magra', 3, 2);
-            $table->decimal('percentual_gordura', 3, 2);
-            $table->decimal('agua_consulta', 3, 2);
-            $table->decimal('imc', 3, 2);
-            $table->decimal('basal', 5, 2);
-            $table->decimal('pontuacao', 3, 2);
+            $table->float('peso_consulta', 10, 2);
+            $table->float('peso_muscular', 10, 2);
+            $table->float('massa_magra', 10, 2);
+            $table->float('percentual_gordura', 10, 2);
+            $table->float('agua_consulta', 10, 2);
+            $table->float('imc', 10, 2);
+            $table->float('basal', 10, 2);
+            $table->float('pontuacao', 10, 2);
             $table->date('data_consulta');
             $table->timestamps();
             
