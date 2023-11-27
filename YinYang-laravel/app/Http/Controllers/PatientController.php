@@ -15,6 +15,8 @@ class patientController extends Controller
     public function store(Request $request)
     {
         $this->patients->store($request->input());
+
+        #return $patient;
         
         return ['message' => 'Cadatrado com sucesso'];
     }

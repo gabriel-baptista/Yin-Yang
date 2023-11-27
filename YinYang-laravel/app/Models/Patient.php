@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,10 +16,12 @@ class patient extends Model
     protected $fillable = [
         'id_nutricionist',
         'nome',
+        'sobrenome',
         'email',
         'contato',
         'ativo',
         'cidade',
+        'endereco',
         'idade',
         'sexo',
         'pesoInicial',
@@ -31,9 +34,14 @@ class patient extends Model
 
     public function store($patients)
     {
+        $idNutricionist = session()->get('id')??1;
+
+        $patients['id_nutricionist'] = $idNutricionist;
+        $patients['ativo'] = 1;
+
         $this->fill($patients);
         $this->save();
-        return ["message" => "Anaminesia registered successfully!"];
+        return ["message" => "Patient registered successfully!"];
     }
 
     //Function update patients in BD
