@@ -7,17 +7,17 @@ import Header from "../components/Header";
 import bioimpedanceHook from "../api/hooks/bioimpedance";
 
 const initialValues = {
-  pontuacao:"50",
-  date:"2002-10-25",
-  pesoMuscular:"50",
-  massaMagra:"50",
-  pesoCorporal: "50",
-  gorduraKg: "50",
+  pontuacao:"",
+  date:"",
+  pesoMuscular:"",
+  massaMagra:"",
+  pesoCorporal: "",
+  gorduraKg: "",
   
-  gorduraPercentual:"50",
-  agua:"50",
-  basal:"50",
-  imc:"50",
+  gorduraPercentual:"",
+  agua:"",
+  basal:"",
+  imc:"",
 };
 
 // validação para cada campo do formulario
