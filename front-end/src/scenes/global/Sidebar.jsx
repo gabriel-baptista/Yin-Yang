@@ -45,6 +45,7 @@ const Sidebar = () => {
         top: 0,
         bottom: 0,
         zIndex: 10000,
+        
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },

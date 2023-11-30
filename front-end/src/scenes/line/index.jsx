@@ -7,7 +7,7 @@ const Line = () => {
     <Box m="20px">
       {/* <Header title="Grafico de teste" subtitle="" /> */}
       <Box height="75vh">
-        <LineChart />
+        {/* <LineChart /> */}
       </Box>
     </Box>
   );

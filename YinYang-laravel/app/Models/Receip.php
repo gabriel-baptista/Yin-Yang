@@ -23,9 +23,13 @@ class Receip extends Model
 
     public function store($receips)
     {
+        $idNutricionist = session()->get('id') ?? 1;
+
+        $receips['id_nutricionist'] = $idNutricionist;
+
         $this->fill($receips);
         $this->save();
-        return ["message" => "Anaminesia registered successfully!"];
+        return ["message" => "Recipe registered successfully!"];
     }
 
     //Function update receips in BD
@@ -41,7 +45,7 @@ class Receip extends Model
         $receip->fill($infoEdit);
         $receip->save();
 
-        return ["message" => "Successfully altered anaminesia!"];
+        return ["message" => "Successfully altered recipe!"];
     }
 
     //Function delete receips in BD
@@ -57,6 +61,15 @@ class Receip extends Model
         $receip->delete();
 
         return ["message" => "Receips successfully deleted!"];
+    }
+
+    public function list()
+    {
+        $receips = Receip::where('id_nutricionist', session()->get('id') ?? 1)
+            ->orderBy('nome')
+            ->get(['id','nome', 'ingredientes', 'modo_preparo']);
+
+        return $receips;
     }
 
     //Function extend receips with nutriocionist in BD

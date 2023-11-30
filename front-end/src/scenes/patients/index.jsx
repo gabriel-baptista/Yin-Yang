@@ -1,10 +1,10 @@
 
 import { useState, useEffect } from "react";
 // renomear arquivo depois
-import { Box, useTheme, Button  } from "@mui/material";
+import { Box, useTheme, Button } from "@mui/material";
 import { DataGrid, GridToolbar, ptBR } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataPatients } from "../../data/mockData";
+import { mockDataGet } from "../../data/mockData";
 // import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 // import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 // import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
@@ -12,47 +12,46 @@ import { mockDataPatients } from "../../data/mockData";
 import Header from "../../components/Header";
 import EditIcon from "@mui/icons-material/Edit";
 // import User from "../user";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Patients = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [tableData, setTableData] = useState([]);
 
-  let navigate = useNavigate(); 
+  let navigate = useNavigate();
 
-  useEffect(() => { 
-
+  useEffect(() => {
+    mockDataGet().then((data) => {
+      setTableData(data)
+    }).catch((error) => {
+      console.log(error);
+    });
   }, []);
-
-  const routeChange = () =>{ 
-    let path = `/user`; 
-    navigate(path);
-  }
 
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "name",
+      field: "nome",
       headerName: "Nome",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
+      field: "idade",
       headerName: "Idade",
       type: "number",
       headerAlign: "left",
       Align: "left",
     },
-    { field: "phone", headerName: "Celular", flex: 1 },
+    { field: "contato", headerName: "Celular", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
     // campo abaixo vai estilizar a celula com um botao
     {
       field: "access",
       headerName: "",
       flex: 1,
-      renderCell: ({ row: { access } }) => {
+      renderCell: (fieldData) => {
         return (
           <Box
             width="100%"
@@ -60,12 +59,12 @@ const Patients = () => {
             p="5px"
             display="flex"
             justifyContent="center"
-            // backgroundColor={
-            //   access === "admin"
-            //     ? colors.greenAccent[600]
-            //     : colors.greenAccent[600]
-            // }
-            // borderRadius="4px"
+          // backgroundColor={
+          //   access === "admin"
+          //     ? colors.greenAccent[600]
+          //     : colors.greenAccent[600]
+          // }
+          // borderRadius="4px"
           >
             {/* {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
             {access === "manager" && <SecurityOutlinedIcon />}
@@ -76,22 +75,22 @@ const Patients = () => {
             {/* <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
               {"Editar"}
             </Typography> */}
-              <Button
-            onClick={routeChange}
-            sx={{
-              backgroundColor: colors.greenAccent[600],
-              color: colors.grey[100],
-              "&:hover": {
-                backgroundColor: colors.greenAccent[700],
-              },
-              fontSize: "12px",
-              fontWeight: "bold",
-              borderRadius: "8px",
-            }}
-          >
-            <EditIcon sx={{ mr: "10px" }} />
-            Editar
-          </Button>
+            <Button
+              onClick={() => navigate(`/pacientes/` + fieldData.row.id, { state: { name: fieldData.row.nome } }) }
+              sx={{
+                backgroundColor: colors.greenAccent[600],
+                color: colors.grey[100],
+                "&:hover": {
+                  backgroundColor: colors.greenAccent[700],
+                },
+                fontSize: "12px",
+                fontWeight: "bold",
+                borderRadius: "8px",
+              }}
+            >
+              <EditIcon sx={{ mr: "10px" }} />
+              Editar
+            </Button>
           </Box>
         );
       },
@@ -135,7 +134,7 @@ const Patients = () => {
       >
         <DataGrid
           rowHeight={40}
-          rows={mockDataPatients}
+          rows={tableData}
           columns={columns}
           slots={{
             toolbar: GridToolbar,

@@ -1,11 +1,35 @@
-import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
 import { mockWaterData as data } from "../data/mockData";
+import { useEffect, useState } from "react";
+import moment from "moment";
 
-const WaterChart = ({ isCustomLineColors = false, isDashboard = false }) => {
+const WaterChart = ({ isCustomLineColors = false, isDashboard = false, id }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  // const [pao, setStatePao] = useState([{
+  //   id: 1,
+  //   data: [{
+  //     x: 20,
+  //     y: 20
+  //   }]
+  // }]);
+
+  // useEffect(() => {
+  //   data(id).then(frango => {
+  //     // setStatePao({
+  //     //   ...frango, data: frango.data.map(row => {
+  //     //     return { ...row, x: moment(row.x).format("DD/MM/YYYY") }
+  //     //   })
+  //     // });
+  //     console.log({
+  //       ...frango, data: frango.data.map(row => {
+  //         return { ...row, x: moment(row.x).format("DD/MM/YYYY") }
+  //       })
+  //     })
+  //   })
+  // }, [])
 
   return (
     <ResponsiveLine

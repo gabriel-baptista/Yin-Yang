@@ -17,6 +17,15 @@ const Recipe = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [recipeInfo, setReceipInfo] = React.useState([]);
+
+  React.useEffect(() => {
+    recipe().then((data) => {
+      setReceipInfo(data)
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, []);
 
   return (
     <Box m="20px">
@@ -68,18 +77,18 @@ const Recipe = () => {
         </Box>
       </Box>
 
-      {recipe.map(({ id, nome, ingredientes, modo_de_preparo }) =>
-        id === 1 ? ( // by default 1st Accordion open...
-          <Accordion key={id} defaultExpanded>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography color={colors.greenAccent[500]} variant="h5">
-                {nome}
-              </Typography>
-            </AccordionSummary>
+      {recipeInfo.map(({ id, nome, ingredientes, modo_preparo }) =>
+      (
+        <Accordion key={id}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography color={colors.greenAccent[500]} variant="h5">
+              {nome}
+            </Typography>
+          </AccordionSummary>
 
-            <AccordionDetails>
+          <AccordionDetails>
               <Typography>
-                {ingredientes.map((ingrediente, index) => (
+                {ingredientes.split('\n').map((ingrediente, index) => (
                   <React.Fragment key={index}>
                     {ingrediente}
                     <br />
@@ -88,34 +97,11 @@ const Recipe = () => {
               </Typography>
             </AccordionDetails>
 
-            <AccordionDetails>
-              <Typography>{modo_de_preparo}</Typography>
-            </AccordionDetails>
-          </Accordion>
-        ) : (
-          <Accordion key={id}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography color={colors.greenAccent[500]} variant="h5">
-                {nome}
-              </Typography>
-            </AccordionSummary>
-
-            <AccordionDetails>
-              <Typography>
-                {ingredientes.map((ingrediente, index) => (
-                  <React.Fragment key={index}>
-                    {ingrediente}
-                    <br />
-                  </React.Fragment>
-                ))}
-              </Typography>
-            </AccordionDetails>
-
-            <AccordionDetails>
-              <Typography>{modo_de_preparo}</Typography>
-            </AccordionDetails>
-          </Accordion>
-        )
+          <AccordionDetails>
+            <Typography>{modo_preparo}</Typography>
+          </AccordionDetails>
+        </Accordion>
+      )
       )}
     </Box>
   );
