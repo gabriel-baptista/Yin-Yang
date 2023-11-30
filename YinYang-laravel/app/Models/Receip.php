@@ -59,6 +59,14 @@ class Receip extends Model
         return ["message" => "Receips successfully deleted!"];
     }
 
+    public function list()
+    {
+        $receips = Receip::where('id_nutricionist', session()->get('id_nutricionist')??1)
+            ->get(['nome','ingredientes','modo_preparo']);
+        
+        return $receips;
+    }
+
     //Function extend receips with nutriocionist in BD
 
     public function nutricionist()

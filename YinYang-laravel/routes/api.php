@@ -23,11 +23,17 @@ use Illuminate\Support\Facades\Route;
 Route::post('/appointment/store', 'App\Http\Controllers\AppointmentController@store');
 Route::put('/appointment/update/{id}', 'App\Http\Controllers\AppointmentController@update');
 Route::delete('/appointment/destroy/{id}', 'App\Http\Controllers\AppointmentController@destroy');
+Route::get('/appointment/list', 'App\Http\Controllers\AppointmentController@list');
 
 //Bioimpedance
 Route::post('/bioimpedance/store', 'App\Http\Controllers\BioimpedanceController@store');
 Route::put('/bioimpedance/update/{id}', 'App\Http\Controllers\BioimpedanceController@update');
 Route::delete('/bioimpedance/destroy/{id}', 'App\Http\Controllers\BioimpedanceController@destroy');
+Route::get('/bioimpedance/info/{id}', 'App\Http\Controllers\BioimpedanceController@infoPatient');
+Route::get('/bioimpedance/info/chart/{id}', 'App\Http\Controllers\BioimpedanceController@infoChartPatient');
+
+//Dashboard
+Route::get('/dashboard/chart', 'App\Http\Controllers\PatientController@chart');
 
 //Meal
 Route::post('/meal/store', 'App\Http\Controllers\MealController@store');
@@ -43,14 +49,18 @@ Route::delete('/nutricionist/destroy/{id}', 'App\Http\Controllers\NutricionistCo
 Route::post('/patient/store', 'App\Http\Controllers\PatientController@store');
 Route::put('/patient/update/{id}', 'App\Http\Controllers\PatientController@update');
 Route::delete('/patient/destroy/{id}', 'App\Http\Controllers\PatientController@destroy');
+Route::get('/patient/list', 'App\Http\Controllers\PatientController@list');
 
 //Receip
 Route::post('/receip/store', 'App\Http\Controllers\ReceipController@store');
 Route::put('/receip/update/{id}', 'App\Http\Controllers\ReceipController@update');
 Route::delete('/receip/destroy/{id}', 'App\Http\Controllers\ReceipController@destroy');
+Route::get('/receip/list/', 'App\Http\Controllers\ReceipController@list');
 
 //User
 Route::post('/user/store', 'App\Http\Controllers\UserController@store');
+Route::post('/user/login/', 'App\Http\Controllers\UserController@login');
+Route::get('/user/session/{id}', 'App\Http\Controllers\UserController@session');
 Route::put('/user/update/{id}', 'App\Http\Controllers\UserController@update');
 Route::put('/user/password/{id}', 'App\Http\Controllers\UserController@resetPassword');
 Route::delete('/user/destroy/{id}', 'App\Http\Controllers\UserController@destroy');

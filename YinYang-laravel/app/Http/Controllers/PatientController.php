@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 class patientController extends Controller
 {
     public function __construct(private Patient $patients)
-    {   
+    {
     }
 
     public function store(Request $request)
@@ -17,11 +17,11 @@ class patientController extends Controller
         $this->patients->store($request->input());
 
         #return $patient;
-        
+
         return ['message' => 'Cadatrado com sucesso'];
     }
 
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -32,7 +32,7 @@ class patientController extends Controller
     public function update(Request $request, $id)
     {
         $this->patients->edit($request->input(), $id);
-        
+
         return ['message' => 'Cadatrado com sucesso'];
     }
 
@@ -47,5 +47,18 @@ class patientController extends Controller
         $this->patients->erase($id);
 
         return ['message' => 'Deletado com sucesso'];
+    }
+
+    public function list()
+    {
+        $return = $this->patients->list();
+
+        return $return;
+    }
+
+    public function chart(){
+        $return = $this->patients->chart();
+
+        return $return;
     }
 }

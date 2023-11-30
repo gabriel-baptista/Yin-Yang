@@ -15,17 +15,17 @@ class BioimpedanceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(private Bioimpedance $bioimpedance)
-    {   
+    {
     }
 
     public function store(Request $request)
     {
         $this->bioimpedance->store($request->input());
-        
+
         return ['message' => 'Cadatrado com sucesso'];
     }
 
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -36,7 +36,7 @@ class BioimpedanceController extends Controller
     public function update(Request $request, $id)
     {
         $this->bioimpedance->edit($request->input(), $id);
-        
+
         return ['message' => 'Cadatrado com sucesso'];
     }
 
@@ -51,5 +51,19 @@ class BioimpedanceController extends Controller
         $this->bioimpedance->erase($id);
 
         return ['message' => 'Deletado com sucesso'];
+    }
+
+    public function infoPatient($id)
+    {
+        $return = $this->bioimpedance->infoPatient($id);
+
+        return $return;
+    }
+
+    public function infoChartPatient($id)
+    {
+        $return = $this->bioimpedance->infoChartPatient($id);
+
+        return $return;
     }
 }

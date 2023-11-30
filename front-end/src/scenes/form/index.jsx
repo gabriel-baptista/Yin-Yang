@@ -225,7 +225,7 @@ const Form = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.usoMedicamento}
-                name="medicamento"
+                name="usoMedicamento"
                 error={!!touched.usoMedicamento && !!errors.usoMedicamento}
                 helperText={touched.usoMedicamento && errors.usoMedicamento}
                 sx={{ gridColumn: "span 2" }}
@@ -240,7 +240,7 @@ const Form = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.exercicios}
-                name="exercicio"
+                name="exercicios"
                 error={!!touched.exercicios && !!errors.exercicios}
                 helperText={touched.exercicios && errors.exercicios}
                 sx={{ gridColumn: "span 2" }}

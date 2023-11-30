@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+// JWT
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Illuminate\Contracts\Session\Session;
@@ -12,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -76,17 +80,31 @@ class User extends Authenticatable
 
     public function login($credentials)
     {
-        if (Auth::attempt($credentials)) {
-            $activeUser = User::where('login', $credentials['login'])->get(['ativo', 'id']);
+        if (!$token = JWTAuth::attempt($credentials)) {
+            return ['message' => 'Incorrect login or password'];
+        }
 
-            if ($activeUser[0]->ativo == 1) {
-                return redirect()->route('session', $activeUser['id']);
-            } else {
-                return ['message' => 'Inactive User'];
-            }
+        $activeUser = User::where('login', $credentials['login'])->get(['ativo', 'id']);
+
+        if ($activeUser[0]->ativo == 1) {
+            $this->session($activeUser['id']);
+        } else {
+            return ['message' => 'Inactive User'];
+        }
+        return [
+            "message" => "Logged in successfully",
+            "toke" => $token
+        ];
+
+        if (Auth::attempt($credentials)) {
+
         } else {
             return ['message' => 'Incorrect login or password'];
         }
+    }
+
+    public function session($activeUser)
+    {
     }
 
     //Funcition reset password for a user
@@ -111,10 +129,38 @@ class User extends Authenticatable
 
     //Function logged out the user and cleared the session
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         session()->flush();
         return ['message' => 'User logged out successfully.'];
     }
-    
+
+    public function dropSession()
+    {
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        // $infoNutricionist = Nutricionist::where('id_user', $activeUser)
+        //     ->get();
+
+        // return [
+        //     "id" => $infoNutricionist['id'],
+        //     "nome" => $infoNutricionist['nome'],
+        //     "id_user" => $infoNutricionist['id_user'],
+        //     "email" => $infoNutricionist['email'],
+        // ];
+
+        // return ['message' => 'Session start'];
+        // session()->put('id', $infoNutricionist['id']);
+        // session()->put('nome', $infoNutricionist['nome']);
+        // session()->put('id_user', $infoNutricionist['id_user']);
+        // session()->put('email', $infoNutricionist['email']);
+    }
 }

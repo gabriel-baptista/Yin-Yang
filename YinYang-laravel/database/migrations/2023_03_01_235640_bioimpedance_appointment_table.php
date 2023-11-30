@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('peso_muscular', 10, 2);
             $table->float('massa_magra', 10, 2);
             $table->float('percentual_gordura', 10, 2);
+            $table->float('peso_gordura', 10, 2);
             $table->float('agua_consulta', 10, 2);
             $table->float('imc', 10, 2);
             $table->float('basal', 10, 2);

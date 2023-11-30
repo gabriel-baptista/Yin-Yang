@@ -7,11 +7,11 @@ import Topbar from "./scenes/global/Topbar";
 import Sidemenu from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import Pacients from "./scenes/patients";
+import PacientsInfo from "./scenes/patients/info";
 import Form from "./scenes/form";
 import Calendario from "./scenes/calendar";
 // import Line from "./scenes/line";
 import Login from "./scenes/login/login";
-import User from "./scenes/user";
 import Recipe from "./scenes/recipe";
 
 function App() {
@@ -42,9 +42,9 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/pacientes" element={<Pacients />} />
+              <Route path="/pacientes/:id" element={<PacientsInfo />} />
               <Route path="/formulario" element={<Form />} />
               <Route path="/calendario" element={<Calendario />} />
-              <Route path="/user" element={<User />} />
               <Route path="/recipes" element={<Recipe />} />
             </Routes>
           </main>

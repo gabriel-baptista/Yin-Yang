@@ -13,7 +13,8 @@ class Bioimpedance extends Model
     //Ensure model information
 
     protected $fillable = [
-        'id_appointment',
+        'id_patient',
+        'peso_gordura',
         'peso_consulta',
         'peso_muscular',
         'massa_magra',
@@ -63,6 +64,78 @@ class Bioimpedance extends Model
         $bioimpedance->delete();
 
         return ["message" => "Bioimpedance successfully deleted!"];
+    }
+
+    public function infoPatient($id_patient)
+    {
+        $infoPatient = Bioimpedance::where('id_patient', $id_patient)
+            //->where('id_nutricionist', session()->get('id')??1)
+            ->get();
+
+        return $infoPatient;
+    }
+
+    public function infoChartPatient($id_patient)
+    {
+        $currentDate = now();
+        $oneMonthAgo = now()->subMonth();
+
+        $infoMuscle = Bioimpedance::where('id_patient', $id_patient)
+            // ->whereBetween('data_consulta', [$oneMonthAgo, $currentDate])
+            ->orderBy('data_consulta')
+            ->get(['peso_muscular AS y', 'data_consulta AS x']);
+
+        $infoWater = Bioimpedance::where('id_patient', $id_patient)
+            // ->whereBetween('data_consulta', [$oneMonthAgo, $currentDate])
+            ->orderBy('data_consulta')
+            ->get(['agua_consulta AS y', 'data_consulta AS x']);
+
+        $infoBody = Bioimpedance::where('id_patient', $id_patient)
+            // ->whereBetween('data_consulta', [$oneMonthAgo, $currentDate])
+            ->orderBy('data_consulta')
+            ->get(['peso_consulta AS y', 'data_consulta AS x']);
+
+        $infoFat = Bioimpedance::where('id_patient', $id_patient)
+            // ->whereBetween('data_consulta', [$oneMonthAgo, $currentDate])
+            ->orderBy('data_consulta')
+            ->get(['peso_gordura AS y', 'data_consulta AS x']);
+
+        $infoPercentFat = Bioimpedance::where('id_patient', $id_patient)
+            // ->whereBetween('data_consulta', [$oneMonthAgo, $currentDate])
+            ->orderBy('data_consulta')
+            ->get(['percentual_gordura AS y', 'data_consulta AS x']);
+
+        $infoCards = Bioimpedance::where('id_patient', $id_patient)
+            ->orderByDesc('data_consulta')
+            ->first(['peso_consulta', 'imc', 'basal', 'pontuacao']);
+
+        $formattedCharts = [
+            [
+                'muscleChart' => $infoMuscle,
+                'waterChart' => $infoWater,
+                'bodyChart' => $infoBody,
+                'fatChart' => $infoFat,
+                'percentFatChart' => $infoPercentFat,
+            ],
+        ];
+
+        $formattedCards = [
+            [
+                'peso' => $infoCards['peso_consulta'],
+                'imc' => $infoCards['imc'],
+                'basal' => $infoCards['basal'],
+                'pontuacao' => $infoCards['pontuacao'],
+            ]
+        ];
+
+        $formattedData = [
+            [
+                'charts' => $formattedCharts,
+                'cards' => $formattedCards,
+            ],
+        ];
+
+        return $formattedData;
     }
 
     //Function extend bioimpedance with appointment in BD

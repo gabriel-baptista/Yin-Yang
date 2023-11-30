@@ -58,6 +58,25 @@ class Appointment extends Model
         return ["message" => "Appointment successfully deleted!"];
     }
 
+    public function list($type, $mes = 0, $semana = 0, $hoje = 0)
+    {
+        switch ($type) {
+            case 'mes':
+                $mes = $mes == 0 ? $mes = now()->month : $mes = $mes;
+
+                $infoAppointmentMes = Appointment::where('id_nutricionist', 'id')
+                    ->where('data_inicio', $mes)
+                    ->get(['data_final', 'estado']);
+
+                    return $infoAppointmentMes;
+                    break;
+            case 'semana':{
+                
+            }
+            
+        }
+    }
+
     //Function extend apponintment with patients in BD
 
     public function patients()
