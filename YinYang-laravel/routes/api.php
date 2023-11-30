@@ -52,10 +52,10 @@ Route::delete('/patient/destroy/{id}', 'App\Http\Controllers\PatientController@d
 Route::get('/patient/list', 'App\Http\Controllers\PatientController@list');
 
 //Receip
-Route::post('/receip/store', 'App\Http\Controllers\ReceipController@store');
-Route::put('/receip/update/{id}', 'App\Http\Controllers\ReceipController@update');
-Route::delete('/receip/destroy/{id}', 'App\Http\Controllers\ReceipController@destroy');
-Route::get('/receip/list/', 'App\Http\Controllers\ReceipController@list');
+Route::post('/recipe/store', 'App\Http\Controllers\ReceipController@store');
+Route::put('/recipe/update/{id}', 'App\Http\Controllers\ReceipController@update');
+Route::delete('/recipe/destroy/{id}', 'App\Http\Controllers\ReceipController@destroy');
+Route::get('/recipe/list/', 'App\Http\Controllers\ReceipController@list');
 
 //User
 Route::post('/user/store', 'App\Http\Controllers\UserController@store');

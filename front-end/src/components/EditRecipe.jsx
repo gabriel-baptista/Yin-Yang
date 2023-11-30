@@ -1,29 +1,39 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
+import * as React from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../components/Header";
+import recipeHook from "../api/hooks/recipe";
 
 const initialValues = {
   nome: "",
   ingredientes: "",
-  modoPreparo: "",
-
+  modo_preparo: "",
 };
 
 // validação para cada campo do formulario
 const userSchema = yup.object().shape({
   nome: yup.string().required("Campo necessário"),
   ingredientes: yup.string().required("Campo necessário"),
-  modoPreparo: yup.string().required("Campo necessário"),
+  modo_preparo: yup.string().required("Campo necessário"),
 });
 
 const EditRecipe = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const [formData, setFormData] = React.useState(initialValues);
 
   const handleFormSubmit = (values) => {
-    // aqui vai enviar os dados
-    console.log(values);
+    recipeHook.set(
+      {
+        nome: values.nome,
+        ingredientes: values.ingredientes,
+        modo_preparo: values.modo_preparo,
+      }
+    )
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error))
+    console.log(formData);
     console.log("dados enviados");
   };
 
@@ -62,7 +72,7 @@ const EditRecipe = () => {
                 label="Nome"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.pesoCorporal}
+                value={values.nome}
                 name="nome"
                 error={!!touched.nome && !!errors.nome}
                 helperText={touched.nome && errors.nome}
@@ -77,7 +87,7 @@ const EditRecipe = () => {
                 onChange={handleChange}
                 value={values.ingredientes}
                 multiline minRows={3}
-                name="pesoCorporal"
+                name="ingredientes"
                 error={!!touched.ingredientes && !!errors.ingredientes}
                 helperText={touched.ingredientes && errors.ingredientes}
                 sx={{ gridColumn: "span 4" }}
@@ -89,14 +99,14 @@ const EditRecipe = () => {
                 label="Modo de Preparo"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.modoPreparo}
+                value={values.modo_preparo}
                 multiline minRows={3}
-                name="modoPreparo"
-                error={!!touched.modoPreparo && !!errors.modoPreparo}
-                helperText={touched.modoPreparo && errors.modoPreparo}
+                name="modo_preparo"
+                error={!!touched.modo_preparo && !!errors.modo_preparo}
+                helperText={touched.modo_preparo && errors.modo_preparo}
                 sx={{ gridColumn: "span 4" }}
               />
-              
+
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
