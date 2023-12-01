@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class patient extends Model
 {
@@ -103,12 +104,19 @@ class patient extends Model
         $appointmentMonth = Appointment::where('id_nutricionist', session()->get('id') ?? 1)
             ->whereBetween('created_at', [$oneMonthAgo, $currentDate])
             ->count('id');
+
+        $patientsYear = Patient::where('id_nutricionist', session()->get('id') ?? 1)
+            ->whereYear('created_at', date('Y'))
+            ->select(DB::raw('count(id) as pacientes'), DB::raw('MONTH(created_at) month'))
+            ->groupBy('month')
+            ->get();
             
         return [
             'total_pacientes' => $allPatients,
             'pacientes_mes' => $patientsMonth,
             'total_agendamentos' => $allAppointment,
             'agendamentos_mes' => $appointmentMonth,
+            'pacientes_ano' => $patientsYear
         ];
     }
 

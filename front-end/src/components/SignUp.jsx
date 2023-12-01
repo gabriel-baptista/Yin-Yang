@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../components/Header";
+import userHook from "../api/hooks/user";
 
 const initialValues = {
   login: "",
@@ -37,7 +38,22 @@ const SignUp = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const handleFormSubmit = (values) => {
-    // aqui vai enviar os dados
+    userHook.set(
+      {
+        login: values.login,
+        password: values.password,
+        nome: values.nome,
+        email: values.email,
+        crn: values.crn,
+        estado: values.estado,
+        cidade: values.cidade,
+        bairro: values.bairro,
+        rua: values.rua,
+        cep: values.cep,
+      }
+    )
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error))
     console.log(values);
     console.log("dados enviados");
   };

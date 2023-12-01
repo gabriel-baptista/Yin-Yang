@@ -1,36 +1,60 @@
+import { useEffect, useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 // import { mockTransactions } from "../../data/mockData"; // retirar e colocar dados reais
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import LineChart from "../../components/LineChart";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import PersonIcon from '@mui/icons-material/Person';
+import PeopleIcon from '@mui/icons-material/People';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { LineChart } from '@mui/x-charts/LineChart';
 import StatisticBox from "../../components/StatisticBox";
+import dashboard from "../../api/hooks/dashboard";
+
+const siglasMeses = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "June",
+  "July",
+  "Aug",
+  "Sept",
+  "Oct",
+  "Nov",
+  "Dec"
+]
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  const [indicators, setIndicators] = useState({
+    agendamentos_mes: 0,
+    pacientes_mes: 0,
+    total_agendamentos: 0,
+    total_pacientes: 0,
+    pacientes_ano: [{
+      pacientes: 0,
+      month: 1
+    }]
+  })
+
+  useEffect(() => {
+    dashboard.get().then((responce) => {
+      setIndicators(responce.data);
+    }).catch((error) => {
+      console.log(error);
+    })
+  }, [])
 
   return (
     <Box m="30px">
       {/* header */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" />
-
-        {/* botao de download */}
-        {/* <Box>
-          <Button
-            sx={{
-              backgroundColor: colors.blueAccent[700],
-              color: colors.grey[100],
-              fontSize: "14px",
-              fontWeight: "bold",
-              padding: "10px 20px",
-            }}
-          >
-            <DownloadOutlinedIcon sx={{ mr: "10px" }} />
-            Download reports
-          </Button>
-        </Box> */}
       </Box>
 
       {/* grid e graficos */}
@@ -49,12 +73,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatisticBox
-            title="12"
-            subtitle="teste"
-            progress="0.3"
-            increase="+14%"
+            title={indicators.agendamentos_mes}
+            subtitle="Agendamento por Mes"
             icon={
-              <PersonAddIcon
+              <DateRangeIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -68,12 +90,11 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatisticBox
-            title="12"
-            subtitle="teste"
+            title={indicators.pacientes_mes}
+            subtitle="Pacientes por Mes"
             progress="0.5"
-            increase="+14%"
             icon={
-              <PersonAddIcon
+              <PersonIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -87,12 +108,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatisticBox
-            title="12"
-            subtitle="teste"
-            progress="0.75"
-            increase="+14%"
+            title={indicators.total_agendamentos}
+            subtitle="Total de Agendamentos"
             icon={
-              <PersonAddIcon
+              <CalendarMonthIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -106,12 +125,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatisticBox
-            title="12"
-            subtitle="teste"
-            progress="0.92"
-            increase="+14%"
+            title={indicators.total_pacientes}
+            subtitle="Total de Pacientes"
             icon={
-              <PersonAddIcon
+              <PeopleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -124,6 +141,9 @@ const Dashboard = () => {
           gridColumn="span 12"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
+          style={{
+            paddingBottom: "15px"
+          }}
         >
           <Box
             mt="15px"
@@ -138,34 +158,22 @@ const Dashboard = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Gráfico de clientes no ano
+                Gráfico de clientes no ano por mes
               </Typography>
-              {/* <Typography
-                variant="h3"
-                fontWeight="500"
-                color={colors.greenAccent[500]}
-              >
-                59.342,32
-              </Typography> */}
             </Box>
-
-            {/* <Box>
-              <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                />
-              </IconButton>
-            </Box> */}
           </Box>
+          <LineChart
+            series={[
+              { data: indicators.pacientes_ano.map(item => item.pacientes) },
+            ]}
+            xAxis={[{ scaleType: 'point', data: indicators.pacientes_ano.map(item => siglasMeses[item.month - 1]) }]}
+            yAxis={[{ min: 0 }]}
+          />
+        </Box>
+        {/* fim grafico de linha */}
 
-          <Box height="250px" ml="-20px">
-            <LineChart isDashboard={true} />
-          </Box>
-          </Box>
-          {/* fim grafico de linha */}
-
-          {/* transactions */}
-          {/* <Box
+        {/* transactions */}
+        {/* <Box
             gridColumn="span 4"
             gridRow="span 2"
             backgroundColor={colors.primary[400]}
@@ -220,7 +228,7 @@ const Dashboard = () => {
               </Box>
             ))}
           </Box> */}
-        
+
       </Box>
     </Box>
   );

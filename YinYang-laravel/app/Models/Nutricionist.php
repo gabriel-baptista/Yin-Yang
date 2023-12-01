@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Nutricionist extends Model
 {
     use HasFactory;
-    protected $table = 'nutrocionist';
+    protected $table = 'nutricionist';
 
     //Ensure model information
 

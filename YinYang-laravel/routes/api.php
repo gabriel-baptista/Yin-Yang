@@ -8,6 +8,7 @@ use App\Http\Controllers\ReceipController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

@@ -15,125 +15,21 @@ import NumberBox from "../../components/NumberBox";
 import DeleteIcon from '@mui/icons-material/Delete';
 import bioimpedanceHook from "../../api/hooks/bioimpedance";
 import { LineChart } from '@mui/x-charts/LineChart';
+import moment from "moment";
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-// [
-//     {
-//         "muscleChart": [
-//             {
-//                 "y": 2,
-//                 "x": "1212-12-12"
-//             },
-//             {
-//                 "y": 2,
-//                 "x": "1990-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2002-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2003-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2005-10-25"
-//             }
-//         ],
-//         "waterChart": [
-//             {
-//                 "y": 6,
-//                 "x": "1212-12-12"
-//             },
-//             {
-//                 "y": 6,
-//                 "x": "1990-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2002-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2003-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2005-10-25"
-//             }
-//         ],
-//         "bodyChart": [
-//             {
-//                 "y": 1,
-//                 "x": "1212-12-12"
-//             },
-//             {
-//                 "y": 1,
-//                 "x": "1990-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2002-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2003-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2005-10-25"
-//             }
-//         ],
-//         "fatChart": [
-//             {
-//                 "y": 5,
-//                 "x": "1212-12-12"
-//             },
-//             {
-//                 "y": 4,
-//                 "x": "1990-10-25"
-//             },
-//             {
-//                 "y": 2,
-//                 "x": "2002-10-25"
-//             },
-//             {
-//                 "y": 20,
-//                 "x": "2003-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2005-10-25"
-//             }
-//         ],
-//         "percentFatChart": [
-//             {
-//                 "y": 5,
-//                 "x": "1212-12-12"
-//             },
-//             {
-//                 "y": 5,
-//                 "x": "1990-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2002-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2003-10-25"
-//             },
-//             {
-//                 "y": 50,
-//                 "x": "2005-10-25"
-//             }
-//         ]
-//     }
-// ]
+const Tableau10 = [
+  "#00C28E",
+  "#EF4444",
+  "#4444EF",
+  "#EFC200"
+];
 
 const PacientsInfo = () => {
   const { id } = useParams();
   const { state } = useLocation();
+  const [chartsColor, setChartsColor] = React.useState('#00C28E');
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [open, setOpen] = React.useState(false);
@@ -141,7 +37,6 @@ const PacientsInfo = () => {
   const [cards, setCards] = React.useState({
     peso: 0, imc: 0, basal: 0, pontuacao: 0
   });
-
   const [charts, setCharts] = React.useState({
     muscleChart: { labels: [0], series: [0] },
     waterChart: { labels: [0], series: [0] },
@@ -149,7 +44,7 @@ const PacientsInfo = () => {
     fatChart: { labels: [0], series: [0] },
     percentFatChart: { labels: [0], series: [0] }
   });
-  const [bioimpedance, setBioimpedance] = React.useState();
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -167,7 +62,7 @@ const PacientsInfo = () => {
           var labels = [];
           var series = [];
           data.forEach(element => {
-            labels.push(element.x);
+            labels.push(moment(element.x).format("DD/MM/YYYY").toString());
             series.push(element.y);
           });
           return { labels: labels, series: series };
@@ -187,19 +82,6 @@ const PacientsInfo = () => {
       })
 
   }, [id, state.name]);
-
-  const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-  const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-  const xLabels = [
-    'Page A',
-    'Page B',
-    'Page C',
-    'Page D',
-    'Page E',
-    'Page F',
-    'Page G',
-  ];
-
 
   return (
     <Box m="30px" overflow="clip">
@@ -273,7 +155,7 @@ const PacientsInfo = () => {
       <Box
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="180px"
+        gridAutoRows="130px auto 200px 200px 250px"
         gap="20px"
       >
         {/* linha 0 */}
@@ -318,6 +200,40 @@ const PacientsInfo = () => {
         >
           <NumberBox title="Pontuação" number={cards.pontuacao} />
         </Box>
+        <Box
+          gridColumn="span 12"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="50px"
+          style={{
+            marginBotton: "-130px",
+          }}
+        >
+          <ToggleButtonGroup
+            // orientation="vertical"
+            value={chartsColor}
+            exclusive
+            onChange={(e) => {
+              console.log(e.target.value);
+              setChartsColor(e.target.value)
+            }}
+          >
+            {Tableau10.map((value) => (
+              <ToggleButton key={value} value={value} sx={{ p: 1 }}>
+                <div
+                  style={{
+                    width: 15,
+                    height: 15,
+                    backgroundColor: value,
+                    display: 'inline-block',
+                  }}
+                />
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </Box>
         {/* Linha 1 */}
         <Box
           gridColumn="span 6"
@@ -350,6 +266,14 @@ const PacientsInfo = () => {
               { data: charts.muscleChart.series },
             ]}
             xAxis={[{ scaleType: 'point', data: charts.muscleChart.labels }]}
+            sx={{
+              '.MuiLineElement-root': {
+                stroke: chartsColor,
+              },
+              '.MuiMarkElement-root': {
+                stroke: chartsColor,
+              }
+            }}
           />
         </Box>
 
@@ -382,6 +306,14 @@ const PacientsInfo = () => {
           <LineChart
             series={[{ data: charts.waterChart.series }]}
             xAxis={[{ scaleType: 'point', data: charts.waterChart.labels }]}
+            sx={{
+              '.MuiLineElement-root': {
+                stroke: chartsColor,
+              },
+              '.MuiMarkElement-root': {
+                stroke: chartsColor,
+              }
+            }}
           />
           {/* <WaterChart isDashboard={true} id={id}/> */}
         </Box>
@@ -414,8 +346,19 @@ const PacientsInfo = () => {
             </Box>
           </Box>
           <LineChart
-            series={[{ data: charts.bodyChart.series, area: true }]}
+            series={[{ data: charts.bodyChart.series }]}
             xAxis={[{ scaleType: 'point', data: charts.bodyChart.labels }]}
+            sx={{
+              '.MuiLineElement-root': {
+                stroke: chartsColor,
+              },
+              '.MuiMarkElement-root': {
+                stroke: chartsColor,
+              },
+              '.MuiAreaElement-root': {
+                stroke: chartsColor,
+              }
+            }}
           />
         </Box>
 
@@ -450,6 +393,17 @@ const PacientsInfo = () => {
           <LineChart
             series={[{ data: charts.fatChart.series }]}
             xAxis={[{ scaleType: 'point', data: charts.fatChart.labels }]}
+            sx={{
+              '.MuiLineElement-root': {
+                stroke: chartsColor,
+              },
+              '.MuiMarkElement-root': {
+                stroke: chartsColor,
+              },
+              '.MuiAreaElement-root': {
+                stroke: chartsColor,
+              }
+            }}
           />
         </Box>
 
@@ -482,6 +436,17 @@ const PacientsInfo = () => {
           <LineChart
             series={[{ data: charts.percentFatChart.series }]}
             xAxis={[{ scaleType: 'point', data: charts.percentFatChart.labels }]}
+            sx={{
+              '.MuiLineElement-root': {
+                stroke: chartsColor,
+              },
+              '.MuiMarkElement-root': {
+                stroke: chartsColor,
+              },
+              '.MuiAreaElement-root': {
+                stroke: chartsColor,
+              }
+            }}
           />
         </Box>
       </Box>
