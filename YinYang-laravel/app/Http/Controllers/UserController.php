@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nutricionist;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -15,15 +16,37 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(private User $user)
+    public function __construct(private User $user, private Nutricionist $nutricionist)
     {
+        // $this->middleware('api')->except(['login', 'store']);
     }
 
-    public function store(Request $request)
+    public function store(Request $information)
     {
-        $this->user->store($request->input());
 
-        return ['message' => 'Cadatrado com sucesso'];
+        $user = [
+            'login' => $information->login,
+            'password' => $information->senha,
+        ];
+
+        $id_user = $this->user->store($user);
+
+        $nutricionist = [
+            'id_user' => $id_user,
+            'nome' => $information->nome,
+            'email' => $information->email,
+            'celular' => $information->celular,
+            'crn' => $information->crn,
+            'estado' => $information->estado,
+            'cidade' => $information->cidade,
+            'bairro' => $information->bairro,
+            'rua' => $information->rua,
+            'cep' => $information->cep,
+        ];
+
+        $this->nutricionist->store($nutricionist);
+
+        return ['message' => 'Usuário cadastrado com sucesso!'];
     }
 
 
@@ -54,11 +77,11 @@ class UserController extends Controller
         return ['message' => 'Deletado com sucesso'];
     }
 
-    public function login($credentials)
+    public function login(Request $credentials)
     {
-        $this->user->login($credentials);
+        return $this->user->login($credentials);
 
-        return ['message' => 'Usuário logado com sucesso'];
+        // return ['message' => 'Usuário logado com sucesso'];
     }
 
     public function resetPassword(Request $request, $id)

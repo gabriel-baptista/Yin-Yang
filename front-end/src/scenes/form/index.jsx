@@ -3,8 +3,11 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 import patientHook from "../../api/hooks/patient";
+import React from 'react';
 
 const initialValues = {
   nome: "",
@@ -53,15 +56,44 @@ const Form = () => {
 
     patientHook.set(values)
       .then((data) => {
-          console.log(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+  
+  const { vertical, horizontal, open } = state;
+
+  const handleClick = (newState) => () => {
+    setState({ ...newState, open: true });
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
 
   return (
     <Box m="20px">
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        onClose={handleClose}
+        message="Paciente cadastrado com sucesso!"
+        key={vertical + horizontal}
+      >
+        <Alert onClose={handleClose} variant="filled" severity="success"
+          sx={{ width: '100%', bgcolor: '#00C28E', color: '#000', fontWeight: 'light' }}>
+          Paciente cadastrado com sucesso!
+        </Alert>
+      </Snackbar>
       <Header title="Criar Paciente" />
 
       <Formik
@@ -112,7 +144,7 @@ const Form = () => {
                 helperText={touched.sobrenome && errors.sobrenome}
                 sx={{ gridColumn: "span 2" }}
               />
-              
+
               <TextField
                 fullWidth
                 variant="filled"
@@ -261,7 +293,8 @@ const Form = () => {
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+              <Button type="submit" color="secondary" variant="contained"
+                onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>
                 FINALIZAR
               </Button>
             </Box>

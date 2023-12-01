@@ -12,7 +12,7 @@ class NutricionistController extends Controller
     {   
     }
 
-    public function store(Request $request)
+    public function store($request)
     {
         $this->nutricionist->store($request->input());
         

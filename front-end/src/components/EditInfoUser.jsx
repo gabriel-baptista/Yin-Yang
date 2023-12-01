@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
@@ -13,7 +13,6 @@ const initialValues = {
   massaMagra:"",
   pesoCorporal: "",
   gorduraKg: "",
-  
   gorduraPercentual:"",
   agua:"",
   basal:"",
@@ -36,6 +35,7 @@ const userSchema = yup.object().shape({
 const EditInfoUser = ({ id }) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [formData, setFormData] = useState(initialValues);
+
 
   const handleFormSubmit = () => {
     bioimpedanceHook.set(
@@ -95,7 +95,7 @@ const EditInfoUser = ({ id }) => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+                type="number"
                 label="Peso Corporal"
                 onChange={(e)=>setFormData({...formData, pesoCorporal: e.target.value})}
                 value={formData.pesoCorporal}
@@ -108,7 +108,7 @@ const EditInfoUser = ({ id }) => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+              type="number"
                 label="Peso muscular"
                 onChange={(e)=>setFormData({...formData, pesoMuscular: e.target.value})}
                 value={formData.pesoMuscular}
@@ -121,7 +121,7 @@ const EditInfoUser = ({ id }) => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+              type="number"
                 label="Massa Magra"
                 onChange={(e)=>setFormData({...formData, massaMagra: e.target.value})}
                 value={formData.massaMagra}
@@ -134,7 +134,7 @@ const EditInfoUser = ({ id }) => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+              type="number"
                 label="Peso de Gordura (Kg)"
                 onChange={(e)=>setFormData({...formData, gorduraKg: e.target.value})}
                 value={formData.gorduraKg}
@@ -147,7 +147,7 @@ const EditInfoUser = ({ id }) => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+              type="number"
                 label="Percentual de Gordura (%)"
                 onChange={(e)=>setFormData({...formData, gorduraPercentual: e.target.value})}
                 value={formData.gorduraPercentual}
@@ -160,7 +160,7 @@ const EditInfoUser = ({ id }) => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+              type="number"
                 label="Água"
                 onChange={(e)=>setFormData({...formData, agua: e.target.value})}
                 value={formData.agua}
@@ -173,7 +173,7 @@ const EditInfoUser = ({ id }) => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+              type="number"
                 label="Metabolismo Basal"
                 onChange={(e)=>setFormData({...formData, basal: e.target.value})}
                 value={formData.basal}
@@ -186,7 +186,7 @@ const EditInfoUser = ({ id }) => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+              type="number"
                 label="IMC"
                 onChange={(e)=>setFormData({...formData, imc: e.target.value})}
                 value={formData.imc}
@@ -199,7 +199,7 @@ const EditInfoUser = ({ id }) => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+              type="number"
                 label="Pontuação"
                 onChange={(e)=>setFormData({...formData, pontuacao: e.target.value})}
                 value={formData.pontuacao}
@@ -211,7 +211,7 @@ const EditInfoUser = ({ id }) => {
 
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+            <Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
                 FINALIZAR
               </Button>
             </Box>

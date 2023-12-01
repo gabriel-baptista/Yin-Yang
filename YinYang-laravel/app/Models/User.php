@@ -19,6 +19,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $primaryKey = "id";
 
     /**
      * The attributes that are mass assignable.
@@ -38,11 +39,15 @@ class User extends Authenticatable implements JWTSubject
     {
         $user['password'] = Hash::make($user['password']);
 
+        $user['ativo'] = 1;
+
+        $user['nivel_acesso'] = 1;
+
         $this->fill($user);
 
         $this->save();
 
-        return ["message" => "Anaminesia registered successfully!"];
+        return $this->id;
     }
 
     //Function update user in BD
@@ -80,27 +85,21 @@ class User extends Authenticatable implements JWTSubject
 
     public function login($credentials)
     {
-        if (!$token = JWTAuth::attempt($credentials)) {
+        $user = User::where("login",$credentials->login)->first();
+
+        if(!$user)
             return ['message' => 'Incorrect login or password'];
-        }
 
-        $activeUser = User::where('login', $credentials['login'])->get(['ativo', 'id']);
+            if(Hash::check($credentials->password,$user->password)) {
+                $token = JWTAuth::fromUser($user);
 
-        if ($activeUser[0]->ativo == 1) {
-            $this->session($activeUser['id']);
-        } else {
-            return ['message' => 'Inactive User'];
-        }
-        return [
-            "message" => "Logged in successfully",
-            "toke" => $token
-        ];
-
-        if (Auth::attempt($credentials)) {
-
-        } else {
-            return ['message' => 'Incorrect login or password'];
-        }
+                return [
+                    "message" => "Logged in successfully",
+                    "token" => $token
+                ];
+            }
+            else
+                return ['message' => 'Incorrect login or password'];
     }
 
     public function session($activeUser)
@@ -145,9 +144,18 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
+    private function nutricionist()
+    {
+
+        return $this->hasOne(Nutricionist::class, 'id_user');
+    }
+
     public function getJWTCustomClaims()
     {
-        // $infoNutricionist = Nutricionist::where('id_user', $activeUser)
+        return [];
+
+        // $id = $this->id;
+        // $infoNutricionist = Nutricionist::where('id_user', $id)
         //     ->get();
 
         // return [
